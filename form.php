@@ -60,37 +60,37 @@ function pintarCuadros($palabra){
 
 function pintarCuadrosLetra($palabra,$letra){
 
-  var_dump(count($_SESSION['copia']));
+    //var_dump($palabra);
+
     if(strpos($palabra, $letra) ===false){
         $_SESSION["fallos"]++;
-    }else{
-        array_push($_SESSION["letras"],$letra);
     }
 
-    for($i=0;$i<strlen($palabra);$i++){
-       // var_dump($letra);
-        if($palabra[$i]==$letra){
-           $_SESSION['copia'][$i]=$letra;
-        }
-    }
-   var_dump($_SESSION['copia']);
-    $letras=$_SESSION["letras"];
-  
-  
-    echo "<div class='palabra-box'>";
+    
     for($j=0;$j<strlen($palabra);$j++){
-        for($i=0;$i<count($letras);$i++){
-          if($palabra[$j] === $letras[$i]){
-            echo "<div class='raya'>$letras[$i]</div>";
-          }elseif($palabra[$j]===" "){
-            echo "&nbsp &nbsp &nbsp";
-          }else{
-            echo "<div class='raya'></div>";
-            echo " ";  
-          }
-        }
+          if($letra == $palabra[$j]){
+            $_SESSION["letras"][$j]=$letra;
+           // echo "<div class='raya'>$letra</div>";
+          //}elseif($palabra[$j]===" "){
+           // echo "&nbsp &nbsp &nbsp";
+          //}else{
+           // echo "<div class='raya'></div>";
+            //echo " ";  
+          } 
     }
     
+    echo "<div class='palabra-box'>";
+    for($j=0;$j<strlen($palabra);$j++){
+        if(isset($_SESSION["letras"][$j])){
+            $x=$_SESSION['letras'][$j];
+            echo "<div class='raya'>$x</div>";
+        }else{
+            echo "<div class='raya'></div>";
+            echo " ";  
+        }
+    }
+
+    var_dump( $_SESSION["letras"]);
     echo "</div>";
 }
 
