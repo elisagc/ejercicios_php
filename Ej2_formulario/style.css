@@ -1,0 +1,80 @@
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("descarga.jpg");
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input[type=text], input[type=password]{
+  width: 60%;
+  margin: 8px;
+  box-sizing: border-box;
+  border: none;
+  padding: 5px;
+  
+  /* display: block; */
+}
+
+label{
+  color: wheat;
+}
+
+input[type=submit]{
+  background-color: rgb(89, 121, 189);
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 50%;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  background-color: rgb(145, 95, 155);
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.checks{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+ 
+}
+
+select{
+  width: 70%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.inputBox ul li label{
+  display:inline-block;
+  width: 30%;
+}
