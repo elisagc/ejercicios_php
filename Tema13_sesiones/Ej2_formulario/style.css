@@ -1,80 +1,47 @@
 body{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url("descarga.jpg");
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+  justify-content: center;
+  font-family: monospace;
 
-input[type=text], input[type=password]{
-  width: 60%;
-  margin: 8px;
-  box-sizing: border-box;
-  border: none;
-  padding: 5px;
-  
-  /* display: block; */
-}
-
-label{
-  color: wheat;
-}
-
-input[type=submit]{
-  background-color: rgb(89, 121, 189);
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 50%;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  background-color: rgb(145, 95, 155);
-  padding: 10px;
-  border-radius: 10px;
-
-}
-
-table {
-  border-collapse: collapse;
-  width: 50%;
-}
-
-th, td {
-  text-align: center;
-  padding: 8px;
-}
-
-ul{
-  list-style: none;
-  padding-left: 0;
-}
-
-.checks{
-  display: flex;
+  }
+  input[type="text"],
+  input[type="password"],
+  select,
+  textarea {
   width: 100%;
-  justify-content: space-evenly;
- 
-}
+  padding: 12px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-family: monospace;
+  }
+  input[type="submit"] {
+  background-color: #499394;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+  input[type="submit"]:hover {
+  background-color: #56b3b9;
+  }
+  .container {
+  width: 50%;
+  border-radius: 5px;
+  background-color: #e0e4e4;
+  padding: 20px;
+  
+  }
 
-select{
-  width: 70%;
-  margin: 5px;
-  padding: 5px;
-}
+  .error{
+    background-color: rgba(201, 40, 40, 0.438);
+     border: 1px solid #9c2020;
+  }
 
-.inputBox ul li label{
-  display:inline-block;
-  width: 30%;
-}
+  .noerror{
+    background-color: whitesmoke;
+    border: 1px solid #56b3b9;
+  }
