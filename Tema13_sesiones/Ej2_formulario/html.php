@@ -1,16 +1,17 @@
 <?php
 
 function form(...$arr){
+    
+$checkM="";
+$checkF="";
+$checkO="";
 
-    var_dump($arr);
-
-    $check="checked";
-   
 if(!empty($arr[0])){
  
     $nombre= $arr[0]['nombre'];
     $apes=$arr[0]['apellidos'];
     $pass=$arr[0]['contraseña'];
+    $gen=$arr[0]['genero'];
 
     if ($nombre === "error"){
         $nombre="";
@@ -39,15 +40,36 @@ if(!empty($arr[0])){
         $passC="";
     }
 
-    if ($_SESSION["validarNom"] && $_SESSION["validarApes"] && $_SESSION["validarPass"]){
+    if($gen==="error"){
+        $classGen="error";
+    }else{
+        $classGen="noerror";
+        
+        if($gen==="masculino"){
+            $checkM="checked";
+            $checkF="";
+            $checkO="";
+        }elseif($gen==="femenino"){
+            $checkM="";
+            $checkF="checked";
+            $checkO="";
+        }else{
+            $checkM="";
+            $checkF="";
+            $checkO="checked";
+        }
+    }
+
+    if ($_SESSION["validarNom"] && $_SESSION["validarApes"] && $_SESSION["validarPass"] && $_SESSION["validarGen"]){
         $correct="Registrado correctamente";
         $nombre= "";
         $apes="";
         $pass="";
+        $checkM="";
+        $checkF="";
+        $checkO="";
         $aviso="verde";
-        session_unset();
-      
-       
+        session_unset();       
      }else{
          $correct="Introduzca correctamente campos en rojo";
          $aviso="rojo";
@@ -60,11 +82,12 @@ if(!empty($arr[0])){
     $className="noerror";
     $classApes="noerror";
     $classPass="noerror";
+    $classGen="noerrorG";
     $correct="";
     $aviso="";
     $nombreC="";
     $passC="";
-    $apesC="";
+    $apesC=""; 
 }
 
 
@@ -91,11 +114,13 @@ echo <<<HRD
 
     <label>Género:</label>
     <br>
-    <input type="radio" name="genero" value="masculino" $check><label>Masculino</label> 
-    <input type="radio" name="genero" value="femenino"  $check><label>Femenino</label>
-    <input type="radio" name="genero" value="otros" $check><label>Otra</label>
-    <br><br>
 
+    <div class="$classGen">
+    <input type="radio" name="genero" value="masculino" $checkM><label>Masculino</label> 
+    <input type="radio" name="genero" value="femenino" $checkF><label>Femenino</label>
+    <input type="radio" name="genero" value="otros" $checkO><label>Otra</label>
+    <br><br>
+</div>
     <div class="box2">
     <h3 class="$aviso">$correct</h3>
     <input type="submit" name="submit">

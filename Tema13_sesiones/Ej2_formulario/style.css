@@ -50,6 +50,8 @@
   .error{
     background-color: rgba(201, 40, 40, 0.438);
      border: 1px solid #9c2020;
+     border-radius: 4px;
+     padding: 2px;
   }
 
   h3{
@@ -62,6 +64,7 @@
   .noerror{
     background-color: whitesmoke;
     border: 1px solid #56b3b9;
+    border-radius: 4px;
   }
 
   .rojo{
@@ -72,4 +75,17 @@
   .verde{
     background-color: rgba(40, 201, 53, 0.438);
     border: 1px solid #209c58;
+  }
+
+  .noerrorG{
+    background-color: whitesmoke;
+    border: 1px solid #56b3b9;
+    border-radius: 4px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  label{
+    margin-right: 27px;
   }
