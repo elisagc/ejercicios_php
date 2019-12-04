@@ -32,7 +32,7 @@ if (isset($_POST['submit'])){
             $_SESSION["validarPass"]=false;          
         }
 
-     var_dump($_POST);
+     
       if(!empty($_POST["genero"])){
             $_SESSION["genero"]=$_POST["genero"];
             $_SESSION["validarGen"]=true;
