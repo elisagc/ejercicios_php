@@ -58,39 +58,44 @@ function pintarCuadros($palabra){
     echo "</div>";
 }
 
-function pintarCuadrosLetra($palabra,$letra){
-
-    //var_dump($palabra);
-
-    if(strpos($palabra, $letra) ===false){
-        $_SESSION["fallos"]++;
+function pintarMoñeco($fallos){
+$fallos--;
+    if($fallos>0 && $fallos <= 7){
+        echo $fallos;
+        echo "<img src='./img/dead_$fallos'/>";
+    }elseif($fallos>7){
+        echo "HAS PERDIDO PARDILLO!!!!";    
     }
 
-    
+}
+
+
+function pintarCuadrosLetra($palabra,$letra){
+
+ 
     for($j=0;$j<strlen($palabra);$j++){
           if($letra == $palabra[$j]){
             $_SESSION["letras"][$j]=$letra;
-           // echo "<div class='raya'>$letra</div>";
-          //}elseif($palabra[$j]===" "){
-           // echo "&nbsp &nbsp &nbsp";
-          //}else{
-           // echo "<div class='raya'></div>";
-            //echo " ";  
           } 
+          if($palabra[$j]===" "){
+            $_SESSION["letras"][$j]="&nbsp &nbsp &nbsp";
+          };
     }
     
     echo "<div class='palabra-box'>";
     for($j=0;$j<strlen($palabra);$j++){
         if(isset($_SESSION["letras"][$j])){
             $x=$_SESSION['letras'][$j];
-            echo "<div class='raya'>$x</div>";
+            if($x==="&nbsp &nbsp &nbsp"){
+                echo $x;
+            }else{
+                echo "<div class='raya'>$x</div>";
+            }
         }else{
             echo "<div class='raya'></div>";
             echo " ";  
         }
     }
-
-    var_dump( $_SESSION["letras"]);
     echo "</div>";
 }
 
@@ -112,6 +117,17 @@ pintarLetras();
 echo <<<HRD
 </form>
 HRD;
+
+if(strpos($palabra, $letra) ===false){
+   // echo $_SESSION["fallos"];
+    $_SESSION["fallos"]++;
+
+    pintarMoñeco( $_SESSION["fallos"]);
+}else{
+    echo $_SESSION["fallos"];
+    pintarMoñeco( $_SESSION["fallos"]);
+}
+
 footerhtml();
 }
 

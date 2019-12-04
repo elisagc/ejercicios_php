@@ -2,6 +2,7 @@
 include "form.php";
 session_start();
 
+
 if (isset($_POST['letrita'])){
 
     pintarjuego($_SESSION['palabra'],$_POST['letrita']);
