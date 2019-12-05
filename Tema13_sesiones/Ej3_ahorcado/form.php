@@ -51,6 +51,7 @@ function pintarCuadros($palabra){
         if($palabra[$i]===" "){
             echo "&nbsp &nbsp &nbsp";
         }else{
+            $_SESSION['numeroLetras']++;
             echo "<div class='raya'></div>";
             echo " ";  
         }    
@@ -60,19 +61,21 @@ function pintarCuadros($palabra){
 
 function pintarMoñeco($fallos){
 $fallos--;
+
+if($fallos>6){
+      
+    header('Location: end.php');
+}
     if($fallos>0 && $fallos <= 7){
-        echo $fallos;
+        echo "<div class='moñeco'>";
         echo "<img src='./img/dead_$fallos'/>";
-    }elseif($fallos>7){
-        echo "HAS PERDIDO PARDILLO!!!!";    
+        echo "</div>";
     }
 
 }
 
 
 function pintarCuadrosLetra($palabra,$letra){
-
- 
     for($j=0;$j<strlen($palabra);$j++){
           if($letra == $palabra[$j]){
             $_SESSION["letras"][$j]=$letra;
@@ -81,7 +84,6 @@ function pintarCuadrosLetra($palabra,$letra){
             $_SESSION["letras"][$j]="&nbsp &nbsp &nbsp";
           };
     }
-    
     echo "<div class='palabra-box'>";
     for($j=0;$j<strlen($palabra);$j++){
         if(isset($_SESSION["letras"][$j])){
@@ -89,7 +91,7 @@ function pintarCuadrosLetra($palabra,$letra){
             if($x==="&nbsp &nbsp &nbsp"){
                 echo $x;
             }else{
-                echo "<div class='raya'>$x</div>";
+                echo "<div class='raya'>$x</div>"; 
             }
         }else{
             echo "<div class='raya'></div>";
@@ -103,6 +105,7 @@ function pintarCuadrosLetra($palabra,$letra){
 function pintarjuego(&$palabra=null, &$letra=null){
 
 cabecerahtml();
+
 
 if ($palabra && !$letra){
    pintarCuadros($palabra);
@@ -119,23 +122,25 @@ echo <<<HRD
 HRD;
 
 if(strpos($palabra, $letra) ===false){
-   // echo $_SESSION["fallos"];
     $_SESSION["fallos"]++;
-
     pintarMoñeco( $_SESSION["fallos"]);
 }else{
-    echo $_SESSION["fallos"];
+
+  var_dump($_SESSION["letras"]);
+
+    $_SESSION["aciertos"]++;
+    echo $_SESSION["aciertos"];
     pintarMoñeco( $_SESSION["fallos"]);
 }
 
 footerhtml();
 }
 
-function palabra(){
-    $arr=["el resplandor", "buscando a nemo", "titanic","al final de la escalera", "seven", "tesis"];
-    $_SESSION["aleatorio"]=rand(0,5);
-    return $arr[$_SESSION["aleatorio"]];
 
+function palabra(){
+    $arr=["el resplandor", "buscando a nemo", "titanic","al final de la escalera", "seven", "tesis","el padrino","cadena perpetua","el caballero oscuro","ghost in the shell","coco","el retorno del jedi"];
+    $_SESSION["aleatorio"]=array_rand($arr);
+    return $arr[$_SESSION["aleatorio"]];
 }
 
 function pintarLetras(){
