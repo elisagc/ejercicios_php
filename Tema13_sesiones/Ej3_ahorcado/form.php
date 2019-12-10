@@ -54,6 +54,8 @@ function pintarCuadros($palabra){
             $_SESSION['numeroLetras']++;
             echo "<div class='raya'></div>";
             echo " ";  
+          
+           
         }    
     }
     echo "</div>";
@@ -125,11 +127,20 @@ if(strpos($palabra, $letra) ===false){
     $_SESSION["fallos"]++;
     pintarMoñeco( $_SESSION["fallos"]);
 }else{
+$acierto=0;
+ 
 
-  var_dump($_SESSION["letras"]);
+  foreach($_SESSION["letras"] as $letra){
+      if($letra !== "&nbsp &nbsp &nbsp"){
+          $acierto++;
 
-    $_SESSION["aciertos"]++;
-    echo $_SESSION["aciertos"];
+          if($_SESSION["numeroLetras"] === $acierto){
+            header('Location: won.php');
+          }
+          
+      }
+ 
+  }
     pintarMoñeco( $_SESSION["fallos"]);
 }
 

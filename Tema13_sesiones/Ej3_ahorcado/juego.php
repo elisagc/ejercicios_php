@@ -13,7 +13,8 @@ if (isset($_POST['letrita'])){
     if ($_SESSION["palabra"]){
         $_SESSION["fallos"]=0;
         $_SESSION['numeroLetras']=0;
-        $_SESSION['aciertos']=0;
+      
+        
 
         $_SESSION["letras"]= array();
         pintarjuego($_SESSION["palabra"]);
