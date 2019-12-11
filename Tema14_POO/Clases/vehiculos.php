@@ -5,7 +5,8 @@ class Coche{
     var $color;
     var $motor;
 
-    function Coche(){ // Método constructor
+    function __construct()
+    {
         $this-> ruedas=4;
         $this->color="";
         $this->motor=1600;
@@ -36,7 +37,7 @@ class Camion{
     var $color;
     var $motor;
 
-    function Camion(){ // Método constructor
+    function __construct(){ // Método constructor
         $this-> ruedas=8;
         $this->color="";
         $this->motor=2600;

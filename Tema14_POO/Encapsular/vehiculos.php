@@ -5,7 +5,7 @@ class Coche{
     protected $color;
     protected $motor;
 
-    function Coche(){ // Método constructor
+    function __construct(){ // Método constructor
         $this-> ruedas=4; //un coche no debe tener más ruedas, por lo que lo protegemos con private
         $this->color="";
         $this->motor=1600;
@@ -43,7 +43,7 @@ class Coche{
 
 class Camion extends Coche{
  
-    function Camion(){ // Método constructor
+    function __construct(){ // Método constructor
         $this-> ruedas=8;
         $this->color="";
         $this->motor=2600;
