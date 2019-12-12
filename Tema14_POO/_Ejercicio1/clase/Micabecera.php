@@ -1,4 +1,5 @@
-<?php
+<?php namespace clase;
+
 class Micabecera{
     private $cabecera;
     private $footer;
@@ -33,8 +34,8 @@ HRD;
     }
 
     function __toString(){
-        var_dump($this->cabecera);
-        var_dump($this->footer);
+       // var_dump($this->cabecera);
+       // var_dump($this->footer);
     }
 
     function parrafo($texto){
