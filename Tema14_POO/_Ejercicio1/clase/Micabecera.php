@@ -1,4 +1,5 @@
-<?php namespace clase;
+<?php
+namespace clase;
 
 class Micabecera{
     private $cabecera;

@@ -1,10 +1,12 @@
-<?php namespace clase;
+<?php
+namespace otras_clases;
 
-class Micabecera2{
+class Micabecera{
     private $h1;
 
     function __construct($h1){
         $this->h1=$h1;
+        
     }
 
     function getH1(){
