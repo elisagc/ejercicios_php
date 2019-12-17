@@ -2,7 +2,7 @@
 class Cuadrado extends Figura{
 
     private $color;
-    private $fondo;
+    private $tamaño;
     private $num;
 
     //por defecto es negro
@@ -13,8 +13,8 @@ class Cuadrado extends Figura{
     }
 
     function setTamaño($ancho, $alto){
-        $this->fondo[0] = $ancho;
-        $this->fondo[1] = $alto;
+        $this->tamaño[0] = $ancho;
+        $this->tamaño[1] = $alto;
     }
 
     function setNumero($num){
@@ -23,7 +23,7 @@ class Cuadrado extends Figura{
     
     function crearFigura(){
         //tamaño figura
-        $img= imagecreate($this->fondo[0], $this->fondo[1]);
+        $img= imagecreate($this->tamaño[0], $this->tamaño[1]);
         //color de la figura
         imagecolorallocate($img, $this->color[0], $this->color[1], $this->color[2]);
         //pasar la imagen a png y guardarla

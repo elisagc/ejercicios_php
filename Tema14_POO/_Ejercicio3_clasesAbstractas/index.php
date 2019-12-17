@@ -5,15 +5,11 @@ spl_autoload_register(function($className){
 });
 
 
-if (isset($_POST['submit'])){
+
     $cuadrado=new Cuadrado();
-    $cuadrado->setTamaño(60,60);
+    $cuadrado->setTamaño(100,100);
     $cuadrado->setColor();
     $cuadrado->crearFigura();
-
-}else{
-    echo "kkk";
-}
 
 
 

@@ -1,11 +1,9 @@
 <?php
-class Form{
+public class Form{
 
     private $color;
    
-
     
-
 }
 
 ?>
