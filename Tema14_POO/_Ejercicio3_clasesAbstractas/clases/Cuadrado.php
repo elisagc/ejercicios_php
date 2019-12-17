@@ -1,37 +1,42 @@
 <?php
 class Cuadrado extends Figura{
 
-    private $color;
-    private $tamaño;
-    private $num;
-
-    //por defecto es negro
-    function setColor($color=[0,0,0]) {
-        for($i=0;$i<count($color);$i++){
-            $this->color[$i]=$color[$i];
-        }
+    function __contruct($colorFigura,$tamañoFigura)
+    {
+        $this->lienzo=[200,200];
+        $this->colorLienzo=[255,255,255];
+        $this->colorFigura=$colorFigura;
+        $this->tamañoFigura=$tamañoFigura;
+        
     }
 
-    function setTamaño($ancho, $alto){
-        $this->tamaño[0] = $ancho;
-        $this->tamaño[1] = $alto;
+    function getLienzo(){
+        return $this->lienzo;
     }
-
-    function setNumero($num){
-        $this->num=$num;
-    }
-    
-    function crearFigura(){
+   
+    public function crearFigura(){
         //tamaño figura
-        $img= imagecreate($this->tamaño[0], $this->tamaño[1]);
+        $lienzo= imagecreate($this->lienzo[0], $this->lienzo[1]);
+        // color del fondo
+        $colorFondo=imagecolorallocate($lienzo, $this->colorLienzo[0], $this->colorLienzo[1], $this->colorLienzo[2]);
         //color de la figura
-        imagecolorallocate($img, $this->color[0], $this->color[1], $this->color[2]);
+        $colorFigura=imagecolorallocate($lienzo, $this->colorFigura[0], $this->colorFigura[1],$this->colorFigura[3]);
+        //Crear rectángulo o cuadrado
+        imagefilledrectangle($lienzo, 50, 50, $this->tamañoFigura[0], $this->tamañoFigura[1], $colorFigura);
         //pasar la imagen a png y guardarla
-        imagepng($img, "img.png");
+        imagepng($lienzo, "imgCuadrado.png");
         //mostrar la imagen
-        echo "<img src ='img.png'/>"; 
+        echo "<img src ='imgCuadrado.png'/>"; 
     }
 
+          //tamaño del fondo
+ 
 }
+
+
+
+
+
+
 
 ?>
