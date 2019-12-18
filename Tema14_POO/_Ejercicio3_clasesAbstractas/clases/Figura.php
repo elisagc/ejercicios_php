@@ -8,7 +8,15 @@ abstract class Figura{
     protected $tamañoFigura;
        
     abstract public function crearFigura();
-    abstract function __contruct($colorFigura,$tamañoFigura);
+    public function __construct($colorFigura,$tamañoFigura){
+        
+            $this->lienzo=[200,200];
+            $this->colorLienzo=[255,255,255];
+            $this->colorFigura=$colorFigura;
+            $this->tamañoFigura=$tamañoFigura;
+            
+        
+    }
 
  /*   public function setColorFigura($colorFigura=[255,255,255]) {
         for($i=0;$i<count($colorFigura);$i++){

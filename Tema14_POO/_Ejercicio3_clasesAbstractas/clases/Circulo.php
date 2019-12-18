@@ -2,17 +2,23 @@
 
 class Circulo extends Figura{
 
+    public function __construct($colorFigura,$tamañoFigura)
+    {
+        parent::__construct($colorFigura,$tamañoFigura);
+        
+    }
+
     public function crearFigura(){
         //tamaño del fondo
-        $fondoImagen= imagecreate($this->tamaño[0], $this->tamaño[1]);
+        $lienzo= imagecreate($this->lienzo[0], $this->lienzo[1]);
         //color del fondo
-        $colorFondo=imagecolorallocate($fondoImagen, $this->color[0], $this->color[1], $this->color[2]);
+        $colorFondo=imagecolorallocate($lienzo, $this->colorLienzo[0], $this->colorLienzo[1], $this->colorLienzo[2]);
         //color de la figura
-        $colorElipse = imagecolorallocate($fondoImagen, 0, 0, 255);
+        $colorElipse = imagecolorallocate($lienzo, $this->colorFigura[0], $this->colorFigura[1],$this->colorFigura[2]);
         //figura: tamaño del fondo, eje x, eje y, ancho, alto
-        imagefilledellipse($fondoImagen,100,100,200,200, $colorElipse);
+        imagefilledellipse($lienzo,100,100,$this->tamañoFigura[0],$this->tamañoFigura[1], $colorElipse);
         //pasar la imagen a png y guardarla
-        imagepng($fondoImagen, "imgCirculo.png");
+        imagepng($lienzo, "imgCirculo.png");
         //mostrar la imagen
         echo "<img src ='imgCirculo.png'/>";
 
