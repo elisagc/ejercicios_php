@@ -1,0 +1,78 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(178, 215, 247);
+  overflow-x: hidden;
+}
+.mainHeader {
+  background-color: rgb(100, 175, 240);
+  color: black;
+  font-family: "Lucida Sans";
+  margin: 0;
+  padding: 30px;
+  text-align: center;
+  width: 100% !important;
+}
+.mainForm {
+  max-width: 300px;
+  background-color: rgb(178, 215, 247);
+  margin: 5% auto;
+  padding: 30px;
+}
+.mainForm * {
+  font-size: 18px;
+  font-family: "Lucida Grande";
+  margin-bottom: 15px;
+  text-align: center;
+}
+input[type="checkbox"] {
+  margin-left: 30%;
+}
+input[type="number"],
+input[type="color"] {
+  width: 180px;
+  margin-left: 20px;
+}
+.confirmButton {
+  background-color: rgb(15, 107, 187);
+  padding: 3px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-left: 16%;
+  min-width: 200px;
+  border-radius: 5px;
+}
+.confirmButton:hover {
+  box-shadow: 0.1em 0.1em 2em white;
+  text-shadow: 1px 1px 10px black;
+}
+.backgroundRed {
+  background-color: rgb(240, 30, 30);
+}
+.wrapper {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-width: 510px;
+  max-width: 510px;
+  margin: 2% auto;
+}
+.info {
+  font-size: 22px;
+  font-family: "Trebuchet MS";
+  text-align: center;
+  width: 100%;
+}
+.formCol2 {
+  display: grid;
+  grid-template-columns: 20% 70%;
+}
+img {
+  margin: 0 auto;
+  padding: 5px;
+}
