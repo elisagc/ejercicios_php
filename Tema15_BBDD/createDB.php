@@ -9,13 +9,24 @@
 
 include("conectDB.php");
 
-$query=<<<SQL
+$query= file_get_contents("bbdd.sql");
+/*$query=<<<SQL
 create database if not exists prueba3;
+use prueba3;
+CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) engine='Innodb';
 SQL;
+*/
 
 try{
     $statement= $conexion->prepare($query);
     $statement->execute();
+    echo "ÉXITO";
 
 }catch(PDOException $exception){
     print $exception;
