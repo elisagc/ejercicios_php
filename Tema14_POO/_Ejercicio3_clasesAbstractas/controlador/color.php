@@ -13,22 +13,17 @@ session_start();
 
 if(isset($_POST["submit"])){
  
-    //PASAR DE HEXADECIMAL A RGB:
-   //var_dump( $_SESSION["figura"][$i]);
-
    $colores=array();
    for($i=0; $i<count($_SESSION["figura"]); $i++){
-    $hex = $_POST[$_SESSION["figura"][$i]];
-    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-    $color="$r $g $b";
-    array_push($colores,$color);
-
+        //PASAR DE HEXADECIMAL A RGB:
+        $hex = $_POST[$_SESSION["figura"][$i]];
+        list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+        $color="$r $g $b";
+        array_push($colores,$color);
     }
 
     $_SESSION["colores"]=$colores;
-    var_dump($_SESSION["colores"]);
-
-   // header("Location:size.php");
+    header("Location:size.php");
 }
 ?>
 <form method="POST">
@@ -47,13 +42,5 @@ if(isset($_POST["submit"])){
 </body>
 </html>
 
-$color=[$r,$g,$b];
-     $tamaño=[100,100];
-     $cuadrado=new Cuadrado($color,$tamaño);
-     $cuadrado->crearFigura();
 
-    $color2=[50,70,30];
-    $tamaño2=[100,100];
-     $circulo=new Circulo($color2,$tamaño2);
-     $circulo->crearFigura();
      

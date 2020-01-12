@@ -21,7 +21,7 @@
 if(isset($_POST["figura"])){
 
     $_SESSION["figura"]=$_POST["figura"];
-    header("Location:color.php");
+    header("Location:controlador/color.php");
 
 }
 ?>
