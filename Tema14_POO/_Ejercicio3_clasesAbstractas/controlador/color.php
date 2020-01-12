@@ -13,16 +13,23 @@ session_start();
 
 if(isset($_POST["submit"])){
  
-   $colores=array();
+   $coloresRGB=array();
+   $colorHEXADECIMAL=array();
+   var_dump($_POST[$_SESSION["figura"][0]]);
    for($i=0; $i<count($_SESSION["figura"]); $i++){
         //PASAR DE HEXADECIMAL A RGB:
         $hex = $_POST[$_SESSION["figura"][$i]];
         list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
         $color="$r $g $b";
-        array_push($colores,$color);
+        array_push($coloresRGB,$color);
+
+        //Guardar los colores en hexadecimal para SVG
+        array_push($colorHEXADECIMAL,$_POST[$_SESSION["figura"][$i]]);
     }
 
-    $_SESSION["colores"]=$colores;
+    var_dump($colorHEXADECIMAL);
+    $_SESSION["coloresRGB"]=$coloresRGB;
+    $_SESSION["coloresHEX"]=$colorHEXADECIMAL;
     header("Location:size.php");
 }
 ?>

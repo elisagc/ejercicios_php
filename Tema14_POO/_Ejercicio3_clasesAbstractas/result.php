@@ -13,7 +13,7 @@ for($i=0; $i<count($_SESSION["figura"]); $i++){
         
     if($_SESSION["figura"][$i]=== "cuadrado"){
         
-        $color=$_SESSION["colores"][$i];
+        $color=$_SESSION["coloresRGB"][$i];
         $color = explode(" ", $color);
 
         $tamaño=$_SESSION["tamaños"][$i];
@@ -25,7 +25,7 @@ for($i=0; $i<count($_SESSION["figura"]); $i++){
 
     if($_SESSION["figura"][$i]=== "círculo"){
         
-        $color=$_SESSION["colores"][$i];
+        $color=$_SESSION["coloresRGB"][$i];
         $color = explode(" ", $color);
 
         $tamaño=$_SESSION["tamaños"][$i];
@@ -37,20 +37,33 @@ for($i=0; $i<count($_SESSION["figura"]); $i++){
 
     
     if($_SESSION["figura"][$i]=== "elipse"){
-    $color=$_SESSION["colores"][$i];
-        echo "elipse";
+
+    //rx (ancho) y ry (alto) es el tamaño de la figura
+    //height (alto) y width (ancho) es el tamaño del lienzo
+    // cx y cy es donde se posiciona la figura
+    // Solo funciona el color con HEXADECIMALES.
+    $color=$_SESSION["coloresHEX"][$i];
+    $tamaño=$_SESSION["tamaños"][$i];
+
     echo <<<HRD
-    <svg height="300" width="200">
-    <ellipse cx=100 cy=100 rx=100 ry=60
-    fill=$color />
+    <svg height="500" width="1000">
+    <ellipse cx=500 cy=100 rx=$tamaño ry=60
+    fill="$color"/>
     </svg> 
 HRD;
     
     }
 
     if($_SESSION["figura"][$i]=== "triángulo"){
-        echo "triangulo";
-    
+        $color=$_SESSION["coloresHEX"][$i];
+        $tamaño=$_SESSION["tamaños"][$i];
+
+        echo <<<HRD
+        <svg height="500" width="1000">
+        <polygon points="100,10 170,$tamaño 10,$tamaño"
+        fill="$color"/> 
+      </svg> 
+HRD;
     }
    
 

@@ -11,7 +11,7 @@ abstract class Figura{
     public function __construct($colorFigura,$tamañoFigura){
         
             $this->lienzo=[500,500];
-            $this->colorLienzo=[215,255,255];
+            $this->colorLienzo=[255,255,255];
             $this->colorFigura=$colorFigura;
             $this->tamañoFigura=$tamañoFigura;
             
