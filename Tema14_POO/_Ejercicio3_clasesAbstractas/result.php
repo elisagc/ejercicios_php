@@ -17,21 +17,39 @@ for($i=0; $i<count($_SESSION["figura"]); $i++){
         $color = explode(" ", $color);
 
         $tamaño=$_SESSION["tamaños"][$i];
-       // $tamaño=explode(" ", $tamaño);
-        //$tamaño=array_push($tamaño,$tamaño);
-        var_dump($tamaño);
+      
         $cuadrado=new Cuadrado($color,[$tamaño,$tamaño]);
         $cuadrado->crearFigura();
+  
     }
 
     if($_SESSION["figura"][$i]=== "círculo"){
-        echo "circulo";
+        
+        $color=$_SESSION["colores"][$i];
+        $color = explode(" ", $color);
+
+        $tamaño=$_SESSION["tamaños"][$i];
+   
+        $circulo=new Circulo($color,[$tamaño,$tamaño]);
+        $circulo->crearFigura();
     
     }
 
     
     if($_SESSION["figura"][$i]=== "elipse"){
+    $color=$_SESSION["colores"][$i];
         echo "elipse";
+    echo <<<HRD
+    <svg height="300" width="200">
+    <ellipse cx=100 cy=100 rx=100 ry=60
+    fill=$color />
+    </svg> 
+HRD;
+    
+    }
+
+    if($_SESSION["figura"][$i]=== "triángulo"){
+        echo "triangulo";
     
     }
    

@@ -16,7 +16,7 @@ class Circulo extends Figura{
         //color de la figura
         $colorElipse = imagecolorallocate($lienzo, $this->colorFigura[0], $this->colorFigura[1],$this->colorFigura[2]);
         //figura: tamaño del fondo, eje x, eje y, ancho, alto
-        imagefilledellipse($lienzo,100,100,$this->tamañoFigura[0],$this->tamañoFigura[1], $colorElipse);
+        imagefilledellipse($lienzo,250,250,$this->tamañoFigura[0],$this->tamañoFigura[1], $colorElipse);
         //pasar la imagen a png y guardarla
         imagepng($lienzo, "imgCirculo.png");
         //mostrar la imagen

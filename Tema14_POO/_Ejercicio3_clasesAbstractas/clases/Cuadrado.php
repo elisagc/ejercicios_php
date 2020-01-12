@@ -20,7 +20,7 @@ class Cuadrado extends Figura{
         //color de la figura
         $colorFigura=imagecolorallocate($lienzo, $this->colorFigura[0], $this->colorFigura[1],$this->colorFigura[2]);
         //Crear rectángulo o cuadrado
-        imagefilledrectangle($lienzo, 50, 50, $this->tamañoFigura[0], $this->tamañoFigura[1], $colorFigura);
+        imagefilledrectangle($lienzo, 0, 0, $this->tamañoFigura[0], $this->tamañoFigura[1], $colorFigura);
         //pasar la imagen a png y guardarla
         imagepng($lienzo, "imgCuadrado.png");
         //mostrar la imagen

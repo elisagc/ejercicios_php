@@ -29,8 +29,8 @@ if(isset($_POST["submit"])){
     echo "<table>";
     foreach($_SESSION["figura"] as $figura){
         echo "<tr>";
-        echo "<td> Elige color " . $figura . "</td>";
-        echo "<td><input type='number' min='1' max='1000' value='100' name=$figura /></td>";
+        echo "<td> Elige tamaño " . $figura . "</td>";
+        echo "<td><input type='number' min='1' max='500' value='100' name=$figura /></td>";
         echo "</tr>";
     }
     echo "</table>";
