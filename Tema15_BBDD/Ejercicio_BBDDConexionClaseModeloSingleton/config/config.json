@@ -1,0 +1,6 @@
+{
+
+  "db_host": "mysql:dbname=nombre;host=localhost",
+  "db_username": "root",
+  "db_password": ""
+}
