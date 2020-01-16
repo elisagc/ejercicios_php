@@ -1,0 +1,8 @@
+$con = Conexion::getInstance();
+
+$queryCreate=file_get_contents("./config/createTable.sql");
+$con->query($queryCreate);
+
+$queryInsert=file_get_contents("./config/insertData.sql");
+$con->query($queryInsert);
+$con->dbClose();
