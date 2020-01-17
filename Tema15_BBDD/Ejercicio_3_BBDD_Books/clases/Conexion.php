@@ -6,7 +6,7 @@ class Conexion
  
     private function __construct() 
     {
-        $config= file_get_contents("config/config.json");
+        $config= file_get_contents("../config/config.json");
         $config=json_decode($config,true);
         //var_dump($config);
         $this->con = new PDO($config['db_host'],$config['db_username'],$config['db_password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -38,7 +38,31 @@ class Conexion
             echo "ÉXITO";
         
         }catch(PDOException $exception){
-            print "ERROOOOR" . $exception;
+            print "ERROR AL REALIZAR LA QUERY" . $exception;
+        }
+    }
+
+    public function selectQuery($query)
+    {
+        try{
+            $statement= $this->con->prepare($query);
+
+            $statement->execute();
+            $rows=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $rows;
+           /*
+Ejemplo:$query= “Select * from book where autor=:author’;
+$statement = $db->prepare($query);
+$statement->bindValue(‘author’,’Cervantes’);
+$statement->execute();
+$rows=$statement->fetchAll();
+var_dump(rows);
+
+           */
+        
+        }catch(PDOException $exception){
+            print "ERROR AL REALIZAR LA QUERY" . $exception;
         }
     }
 

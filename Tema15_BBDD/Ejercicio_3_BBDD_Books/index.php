@@ -71,7 +71,7 @@
       </style>
 </head>
 <body>
-<form action="Control/controlData.php" method="post">
+<form action="Control/controlLogin.php" method="post">
   <div class="imgcontainer">
       <img src="./images/cat.png" alt="Avatar" class="avatar">
       </div>
