@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
+            body {font-family: Arial, Helvetica, sans-serif;
+              display: flex;
+              justify-content: center;}
             form {border: 3px solid #f1f1f1;
-            width: 15%}
+            width: 25%}
 
             input[type=text], input[type=password] {
             width: 100%;
