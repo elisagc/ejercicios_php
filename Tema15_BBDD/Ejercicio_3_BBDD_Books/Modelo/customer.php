@@ -9,10 +9,37 @@ spl_autoload_register(function($className){
 });
 
 $user=$_SESSION['name'];
-$pass=$_SESSION['pass'];
+$pass=$_SESSION['pass']; // contraseña introducida por el usuario
+
+$customer=new Customer($user,$pass);
+$result= $customer->userExists();
+
+// SI EXISTE ENVIAR A LA INTERFAZ DEPENDIENDO DE SI ES PREMIUM ONO
+// SI NO EXISTE MANDAR A REGISTRAR
+// SI EXISTE PERO ESTÁ MAL LA CONTRASEÑA ENVIAR A LOGIN
+
+if(!empty($result)){ // SI NO ESTÁ EMPTY COMPROBAR LA CONTRASEÑA
+  
+    $resultPass=$result[0]['password']; // La contraseña que me devuelve la BBDD
+   
+    if($resultPass === $pass){
+        echo "user correct";
+        //comprobar si es basic o premium
+    }else{
+        echo "incorrect";
+        $_SESSION['mensaje']=true;
+        var_dump($_SESSION['mensaje']);
+        header('Location: ../index.php');
+      
+    }
+    var_dump($result[0]['password']);
+}else{// SI ESTÁ EMPTY NO ESTÁ EN LA TABLA, REENVIAR A REGISTRO
+   
+    header('Location: ../Vista/registro.php');
+}
 
 
-$selectUser=<<<SEL
+/*$selectUser=<<<SEL
 SELECT email, password from customer where email='$user';
 SEL;
 
@@ -23,4 +50,5 @@ var_dump($resultSelect);
 //$con->query($query);
 $con->dbClose();
 
+*/
 ?>

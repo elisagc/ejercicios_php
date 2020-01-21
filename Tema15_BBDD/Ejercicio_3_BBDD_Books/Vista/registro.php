@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Database</title>
-      <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
             body {font-family: Arial, Helvetica, sans-serif;}
             form {border: 3px solid #f1f1f1;
             width: 15%}
@@ -68,36 +68,33 @@
             width: 100%;
             }
             }
-            
-            .mensaje{
-                  border:1px solid red;
-                  text-align: center;
-                  background-color: salmon;
-            
-            }
       </style>
 </head>
 <body>
-<form action="Control/controlLogin.php" method="post">
+<form action="Control/controlRegistro.php" method="post">
   <div class="imgcontainer">
-      <img src="./images/cat.png" alt="Avatar" class="avatar">
+      <img src="./../images/cat.png" alt="Avatar" class="avatar">
       </div>
 
-      <?php
-      session_start();
-      if(isset($_SESSION['mensaje'])){
-            echo "<p class='mensaje'> Introduce contraseña correcta </p>";
-      }
-      ?>
-
       <div class="container">
-      <label for="uname"><b>Email</b></label>
+      <label for="uname"><b>Nombre</b></label>
       <input type="text" placeholder="name" name="name" >
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="pass">
+      <label for="psw"><b>Apellido</b></label>
+      <input type="text" placeholder="Enter Password" name="apes">
 
-      <button type="submit" name="submit">Login</button>
+      <label for="psw"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email">
+
+      <label for="psw"><b>Contraseña</b></label>
+      <input type="password" placeholder="Contraseña" name="pass">
+
+      <label for="psw"><b>Premium</b></label>
+      <input type="radio" name="tipo" value="premium">
+      <label for="psw"><b>Basic</b></label>
+      <input type="radio" name="tipo" value="basic">
+
+      <button type="submit" name="submit">Registro</button>
       </div>
 
       <div class="container" style="background-color:#f1f1f1">
