@@ -2,26 +2,36 @@
 
 class Customer {
 
-public $user;
+public $name;
+public $apes;
+public $email;
 public $pass;
+public $type;
 public $con;
 
-function __construct($user,$pass)
+function __construct($name,$apes,$email,$pass,$type)
 {
-    $this->user=$user;
+    $this->name=$name;
+    $this->apes=$apes;
+    $this->email=$email;
     $this->pass=$pass;
+    $this->type=$type;
     $con=Conexion::getInstance();
     $this->con=$con;
 }
 
-public function userExists(){
+public function insertNewCustomer(){
 
-$selectUser=<<<SEL
-SELECT email, password from customer where email='$this->user';
+$insertUser=<<<SEL
+INSERT INTO customer (firstname,surname,email,type,password) VALUES ('$this->name', '$this->apes', '$this->email', '$this->type', '$this->pass');
 SEL;
 
-$resultSelect=$this->con->selectQuery($selectUser);
-return $resultSelect;
+try{
+    $this->con->selectQuery($insertUser);
+    return true;
+}catch(PDOException $exception){
+    return $exception;
+}
 
 $this->con->dbClose();
 

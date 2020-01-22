@@ -73,7 +73,7 @@
       </style>
 </head>
 <body>
-<form action="Control/controlRegistro.php" method="post">
+<form action="../Control/controlRegistro.php" method="post">
   <div class="imgcontainer">
       <img src="./../images/cat.png" alt="Avatar" class="avatar">
       </div>
@@ -92,9 +92,9 @@
       <input type="password" placeholder="Contraseña" name="pass">
 
       <label for="psw"><b>Premium</b></label>
-      <input type="radio" name="tipo" value="premium">
+      <input type="radio" name="type" value="premium">
       <label for="psw"><b>Basic</b></label>
-      <input type="radio" name="tipo" value="basic">
+      <input type="radio" name="type" value="basic">
 
       <button type="submit" name="submit">Registro</button>
       </div>

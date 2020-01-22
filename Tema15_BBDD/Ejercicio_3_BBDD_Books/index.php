@@ -89,7 +89,10 @@
       session_start();
       if(isset($_SESSION['mensaje'])){
             echo "<p class='mensaje'> Introduce contraseña correcta </p>";
+           session_destroy();
       }
+
+     
       ?>
 
       <div class="container">
