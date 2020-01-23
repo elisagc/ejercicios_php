@@ -30,7 +30,7 @@ try{
     $this->con->selectQuery($insertUser);
     return true;
 }catch(PDOException $exception){
-    return $exception;
+    return false;
 }
 
 $this->con->dbClose();

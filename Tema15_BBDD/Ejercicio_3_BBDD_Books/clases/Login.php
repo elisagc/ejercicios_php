@@ -17,7 +17,7 @@ function __construct($user,$pass)
 public function userExists(){
 
 $selectUser=<<<SEL
-SELECT email, password from customer where email='$this->user';
+SELECT email, password,type from customer where email='$this->user';
 SEL;
 
 $resultSelect=$this->con->selectQuery($selectUser);

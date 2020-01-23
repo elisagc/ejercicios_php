@@ -13,9 +13,8 @@ $email=$_SESSION['email'];
 $pass=$_SESSION['pass'];
 $type=$_SESSION['type'];  
 
-$customer=new Customer($name,$apes,$email,$pass,$type);
+$customer=new Customer($name,$apes,$email,md5($pass),$type);
 $result= $customer->insertNewCustomer();
-
 
 if($result){
 
