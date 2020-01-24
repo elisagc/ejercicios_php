@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mi App Books</title>
-<style>
-input[type=submit]{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mi App Books</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
 
-form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    nav {
+      background-color: #008080;
+    }
 
-}
+    .name {
+      flex-grow: 1;
+      margin-left: 10px;
+      color: white;
+    }
 
-</style>
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+    }
+
+    li:hover {
+      background-color: #009d9d;
+    }
+
+    a {
+      text-decoration: none;
+      display: block;
+      padding: 1em;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
-
-<form action="../Control/controlLibro.php" method="post">
-
-<div>
-<h1>Bienvenido Usuario Premium ¿Qué deseas hacer?</h1>
-<input type="submit" value="Insertar Libro" name="insertar">
-<input type="submit" value="Alquilar Libro" name="alquilar">
-<input type="submit" value="Devolver Libro" name="devolver">
-<input type="submit" value="Eliminar Libro" name="eliminar"> 
-<input type="submit" value="Ver mis libros prestados" name="ver"> 
-
-</div>
-
-</form>
-    
+  <nav>
+    <ul>
+      <p class="name">
+        Usuario conectado: <?php session_start();
+                            echo $_SESSION['name'] ?>
+      </p>
+      <li><a href="./formInsertar.php">Insertar libro</a></li>
+      <li><a href="./formAlquilar.php">Alquilar Libro</a></li>
+      <li><a href="./formDevolver.php">Devolver Libro</a></li>
+      <li><a href="./formEliminar.php">Eliminar Libro</a></li>
+      <li><a href="./formVer.php">Ver mis libros prestados</a></li>
+    </ul>
+  </nav>
 </body>
-</html>
 
+</html>

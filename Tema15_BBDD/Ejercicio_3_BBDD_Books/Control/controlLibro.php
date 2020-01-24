@@ -1,12 +1,11 @@
 <?php
 echo "control Libro";
 
-var_dump(isset($_POST["insertar"]));
 if(isset($_POST["insertar"])){
 
     echo "has dado a insertar";
     if(isset($_SESSION['insertar'])){
- 
+        $_SESSION['insertar']=false;
         echo"existe la sesión insertar";
     }else{
         include("../Vista/insertar.php");
