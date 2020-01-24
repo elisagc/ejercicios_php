@@ -22,22 +22,20 @@ function __construct($name,$apes,$email,$pass,$type)
 
 public function insertNewCustomer(){
 
-$insertUser=<<<SEL
-INSERT INTO customer (firstname,surname,email,type,password) VALUES ('$this->name', '$this->apes', '$this->email', '$this->type', '$this->pass');
+    $insertUser=<<<SEL
+    INSERT INTO customer (firstname,surname,email,type,password) VALUES ('$this->name', '$this->apes', '$this->email', '$this->type', '$this->pass');
 SEL;
 
-try{
-    $this->con->selectQuery($insertUser);
-    return true;
-}catch(PDOException $exception){
-    return false;
-}
+    try{
+        $this->con->selectQuery($insertUser);
+        return true;
+    }catch(PDOException $exception){
+        return false;
+    }
 
-$this->con->dbClose();
-
-}
-
+    $this->con->dbClose();
 
 }
 
-?>
+
+}

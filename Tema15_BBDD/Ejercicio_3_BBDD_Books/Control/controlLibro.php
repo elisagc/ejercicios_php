@@ -1,8 +1,19 @@
 <?php
-echo "controlLibro";
+echo "control Libro";
 
+var_dump(isset($_POST["insertar"]));
 if(isset($_POST["insertar"])){
-echo "insertar";
+
+    echo "has dado a insertar";
+    if(isset($_SESSION['insertar'])){
+ 
+        echo"existe la sesión insertar";
+    }else{
+        include("../Vista/insertar.php");
+        echo "se ha creado la sesion insertar";
+        $_SESSION['insertar']=true;
+    }
+  
 }
 
 if(isset($_POST["alquilar"])){
