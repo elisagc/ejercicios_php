@@ -1,19 +1,23 @@
 <?php
-class Conexion{
+class Conexion
+{
     private static $instance = NULL;
     private $con = NULL;
 
-    private function __construct(){
+    private function __construct()
+    {
         $config = file_get_contents("../config/config.json");
         $config = json_decode($config, true);
         //var_dump($config);
         $this->con = new PDO($config['db_host'], $config['db_username'], $config['db_password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     }
 
-    private function __clone(){
+    private function __clone()
+    {
     }
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         if (is_null(self::$instance)) {
             self::$instance = new self();
         }
@@ -21,22 +25,24 @@ class Conexion{
     }
 
 
-    public function connectToDB(){
+    public function connectToDB()
+    {
         return $this->con;
     }
 
-    public function query($query){
+    public function query($query)
+    {
         try {
-            // es como: connectToDB -> prepare($query);
             $statement = $this->con->prepare($query);
-            $statement->execute();
-            return true;
+            $res = $statement->execute();
+            return $res;
         } catch (PDOException $exception) {
             return $exception;
         }
     }
 
-    public function selectQuery($query){
+    public function selectQuery($query)
+    {
         try {
             $statement = $this->con->prepare($query);
             $statement->execute();
@@ -57,12 +63,9 @@ var_dump(rows);
         }
     }
 
-    public function dbClose(){
+    public function dbClose()
+    {
         $this->con = null;
         echo "CONEXIÓN CERRADA";
     }
 }
-
-?>
-
-
