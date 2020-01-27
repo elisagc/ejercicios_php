@@ -1,5 +1,6 @@
 <?php
 class Conexion
+
 {
     private static $instance = NULL;
     private $con = NULL;
@@ -34,6 +35,7 @@ class Conexion
     {
         try {
             $statement = $this->con->prepare(trim($query));
+            var_dump($statement);
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {
@@ -44,7 +46,9 @@ class Conexion
     public function selectQuery($query)
     {
         try {
-            $statement = $this->con->prepare($query);
+
+            $statement = $this->con->prepare(trim($query));
+            //var_dump($statement);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 

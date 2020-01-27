@@ -30,22 +30,11 @@
     <div class="form-container">
         <form action="../Control/controlLibro" method="post">
 
-            <label for="isbn"><b>ISBN</b></label>
-            <input type="text" name="isbn" required>
 
-            <label for="isbn"><b>Title</b></label>
-            <input type="text" name="title" required>
+            <label for="title"><b>Buscar libros del usuario:</b></label>
+            <input type="text" name="name" required>
 
-            <label for="isbn"><b>Author</b></label>
-            <input type="text" name="author" required>
-
-            <label for="isbn"><b>Stock</b></label>
-            <input type="text" name="stock" required>
-
-            <label for="isbn"><b>Price</b></label>
-            <input type="text" name="price" required>
-
-            <button type="submit" name="insertar" required>Añadir libro</button>
+            <button type="submit" name="ver" required>Buscar</button>
 
         </form>
     </div>

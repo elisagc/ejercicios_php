@@ -18,9 +18,9 @@
                             echo $_SESSION['name'] ?>
       </p>
       <li><a href="./formInsertar.php">Insertar libro</a></li>
+      <li><a href="./formEliminar.php">Eliminar Libro</a></li>
       <li><a href="./formAlquilar.php">Alquilar Libro</a></li>
       <li><a href="./formDevolver.php">Devolver Libro</a></li>
-      <li><a href="./formEliminar.php">Eliminar Libro</a></li>
       <li><a href="./formVer.php">Ver mis libros prestados</a></li>
     </ul>
   </nav>

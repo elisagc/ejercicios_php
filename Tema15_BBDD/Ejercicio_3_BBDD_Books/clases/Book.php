@@ -10,7 +10,7 @@ class Book
     public $price;
     public $con;
 
-    function __construct($isbn, $title, $author, $stock, $price)
+    function __construct(&$isbn, &$title, &$author, &$stock, &$price)
     {
         $this->isbn = $isbn;
         $this->title = $title;
