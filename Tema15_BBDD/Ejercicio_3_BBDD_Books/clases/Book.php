@@ -24,7 +24,7 @@ class Book
     {
         try {
             $insertNewBook = <<<MYSQL
-            insert into book(title,author,stock,price) values('$this->isbn','$this->title','$this->author',$this->stock,$this->price);
+            insert into book(isbn,title,author,stock,price) values('$this->isbn','$this->title','$this->author',$this->stock,$this->price);
 MYSQL;
             $res = $this->con->query($insertNewBook);
             return $res;

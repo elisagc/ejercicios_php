@@ -1,8 +1,5 @@
 <?php
-echo "control Libro";
-
 spl_autoload_register(function ($className) {
-    echo $className;
     include __DIR__ . '../../clases/' . $className . '.php';
 });
 
@@ -14,13 +11,13 @@ if (isset($_POST["insertar"])) {
     $price = trim($_POST['price']);
     $book = new Book($isbn, $title, $author, $stock, $price);
     $res = $book->insertNewBook();
-    echo $res . "res";
-
     //controlar que el libro no exista con el isbn
     if ($res) {
-        echo "se ha añadido correctamente";
+        echo "insertado correctamente";
+        header("Refresh: 3; url=../Vista/formInsertar.php");
     } else {
-        echo "NOOOOOOOOOOOO";
+        echo "Error: no se ha podido insertar el libro";
+        header("Refresh: 3; url=../Vista/formInsertar.php");
     }
 }
 

@@ -33,7 +33,7 @@ class Conexion
     public function query($query)
     {
         try {
-            $statement = $this->con->prepare($query);
+            $statement = $this->con->prepare(trim($query));
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {

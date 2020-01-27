@@ -5,84 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/style.css">
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-        }
-
-        form {
-            background-color: #c0c0c0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        input[type=text] {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 100px;
-            margin: 5px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-
-        nav {
-            background-color: #008080;
-        }
-
-        .name {
-            flex-grow: 1;
-            margin-left: 10px;
-            color: white;
-        }
-
-        ul {
-            display: flex;
-            justify-content: flex-end;
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            list-style-type: none;
-            display: flex;
-            align-items: center;
-        }
-
-        li:hover {
-            background-color: #009d9d;
-        }
-
-        a {
-            text-decoration: none;
-            display: block;
-            padding: 1em;
-            color: white;
-        }
-
-        .form-container {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        p {
-            display: inline-block;
-        }
-    </style>
     <title>Document</title>
 </head>
 
@@ -100,6 +25,7 @@
             <li><a href="./formVer.php">Ver mis libros prestados</a></li>
         </ul>
     </nav>
+
     <div class="form-container">
         <form action="../Control/controlLibro" method="post">
 
@@ -122,6 +48,10 @@
 
         </form>
     </div>
+
+    <?php include("../Functions/functions.php");
+    paintBooks();
+    ?>
 
 </body>
 
