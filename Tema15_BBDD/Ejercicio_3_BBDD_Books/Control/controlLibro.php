@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 spl_autoload_register(function ($className) {
     include __DIR__ . '../../clases/' . $className . '.php';
 });
@@ -47,7 +48,7 @@ QUERY;
         $rowsBook = $con->selectQuery($selectIdBook);
         $stock = $rowsBook[0]['stock'] - 1;
         $idBook = $rowsBook[0]['id'];
-        var_dump($idBook);
+        //var_dump($idBook);
         $update = <<<QUERY
         update book set stock=$stock where id=$idBook;
 QUERY;
@@ -79,6 +80,46 @@ QUERY;
 //DEVOLVER:
 if (isset($_POST["devolver"])) {
     echo "devolver";
+
+    //borrar libro de borrowedbook
+    //sumar 1 a listado de libros
+    $con = Conexion::getInstance();
+    $persona = $_POST['name'];
+    $isbn = strtolower($_POST['isbn']);
+
+    $selectIdPerson = <<<QUERY
+    select id from customer where email='$persona';
+QUERY;
+
+    $rowsPerson = $con->selectQuery($selectIdPerson);
+    $idPerson=$rowsPerson[0]['id'];
+    
+    if ($rowsPerson) {
+        $selectIdBook = <<<QUERY
+        select id from book where isbn='$isbn';
+QUERY;
+        $rowsBook = $con->selectQuery($selectIdBook);
+        $idBook=$rowsBook[0]['id'];
+
+        $delete="delete from borrowed_books where customer_id=$idPerson and book_id=$idBook";
+        $res= $con->query($delete);
+var_dump($res);
+
+// ver que existe en borrowedbooks si existe se borra si no no
+
+//$exist="select * from borrowed_books where "
+
+
+        if($res){
+            echo "Devuelto correctamente";
+           // header("Refresh: 2; url=../Vista/formDevolver.php");
+        }else{
+            echo "No se ha podido realizar la devolución";
+            //header("Refresh: 2; url=../Vista/formDevolver.php");
+        }
+
+}
+
 }
 
 
@@ -143,6 +184,10 @@ SELECT;
             foreach ($arrBooks as $book) {
                 echo "<p>$book</p>";
             }
+
+            //SERIALIZAR PARA PODER ENVIAR POR EL HEADER:
+            $seri= serialize($arrBooks);
+            header("Location:../Vista/formVer.php?libros=$seri");
         } else {
             echo "el usuario no tiene libros prestados";
             header("Refresh: 2; url=../Vista/formAlquilar.php");

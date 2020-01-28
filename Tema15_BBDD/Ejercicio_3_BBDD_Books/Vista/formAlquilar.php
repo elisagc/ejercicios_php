@@ -51,6 +51,8 @@
 
     <?php include("../Functions/functions.php");
     paintBooks();
+
+
     ?>
 
 </body>

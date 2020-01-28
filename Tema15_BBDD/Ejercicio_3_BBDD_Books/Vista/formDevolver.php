@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
-
     <title>Document</title>
 </head>
 
@@ -31,10 +30,13 @@
         <form action="../Control/controlLibro" method="post">
 
 
-            <label for="title"><b>Buscar libros del usuario:</b></label>
+            <label for="isbn"><b>ISBN</b></label>
+            <input type="text" name="isbn" required>
+    
+            <label for="title"><b>Devuelto por:</b></label>
             <input type="text" name="name" required>
 
-            <button type="submit" name="ver" required>Buscar</button>
+            <button type="submit" name="devolver" required>Devolver</button>
 
         </form>
     </div>
@@ -42,17 +44,7 @@
     <?php include("../Functions/functions.php");
     paintBooks();
 
-        // MOSTRAR LOS LIBROS PRESTADOS QUE VIENEN DESDE CONTROL LIBRO ALQUILAR DESDE EL HEADER SERIALIZADOS
-        if(isset($_GET['libros'])){
 
-            $libros=unserialize($_GET['libros']);
-            echo "<p>Libros que tiene prestados:</p>";
-            echo"<br>";
-                foreach($libros as $libro){
-                echo "<p>$libro</p>";
-                echo"<br>";
-            }
-        }
     ?>
 
 </body>
