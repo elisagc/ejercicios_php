@@ -79,10 +79,7 @@ QUERY;
 
 //DEVOLVER:
 if (isset($_POST["devolver"])) {
-    echo "devolver";
 
-    //borrar libro de borrowedbook
-    //sumar 1 a listado de libros
     $con = Conexion::getInstance();
     $persona = $_POST['name'];
     $isbn = strtolower($_POST['isbn']);
@@ -90,36 +87,46 @@ if (isset($_POST["devolver"])) {
     $selectIdPerson = <<<QUERY
     select id from customer where email='$persona';
 QUERY;
-
     $rowsPerson = $con->selectQuery($selectIdPerson);
-    $idPerson=$rowsPerson[0]['id'];
-    
+
     if ($rowsPerson) {
+        $idPerson = $rowsPerson[0]['id'];
         $selectIdBook = <<<QUERY
-        select id from book where isbn='$isbn';
+        select id, stock from book where isbn='$isbn';
 QUERY;
+
+
         $rowsBook = $con->selectQuery($selectIdBook);
-        $idBook=$rowsBook[0]['id'];
+        $idBook = $rowsBook[0]['id'];
+        $stock = $rowsBook[0]['stock'] + 1;
 
-        $delete="delete from borrowed_books where customer_id=$idPerson and book_id=$idBook";
-        $res= $con->query($delete);
-var_dump($res);
+        //var_dump($stock);
+        $exist = "select * from borrowed_books where customer_id=$idPerson and book_id=$idBook";
+        $res = $con->selectQuery($exist);
 
-// ver que existe en borrowedbooks si existe se borra si no no
+        if (!empty($res)) {
+            $delete = "delete from borrowed_books where customer_id=$idPerson and book_id=$idBook";
+            $res = $con->query($delete);
 
-//$exist="select * from borrowed_books where "
-
-
-        if($res){
-            echo "Devuelto correctamente";
-           // header("Refresh: 2; url=../Vista/formDevolver.php");
-        }else{
-            echo "No se ha podido realizar la devolución";
-            //header("Refresh: 2; url=../Vista/formDevolver.php");
+            if ($res) {
+                $update = <<<QUERY
+                update book set stock=$stock where id=$idBook;
+QUERY;
+                $con->query($update);
+                echo "Devuelto correctamente";
+                header("Refresh: 2; url=../Vista/formDevolver.php");
+            } else {
+                echo "No se ha podido realizar la devolución";
+                header("Refresh: 2; url=../Vista/formDevolver.php");
+            }
+        } else {
+            echo "no tiene ese libro prestado";
+            header("Refresh: 2; url=../Vista/formDevolver.php");
         }
-
-}
-
+    } else {
+        echo "no existe el usuario";
+        header("Refresh: 2; url=../Vista/formDevolver.php");
+    }
 }
 
 
@@ -186,7 +193,7 @@ SELECT;
             }
 
             //SERIALIZAR PARA PODER ENVIAR POR EL HEADER:
-            $seri= serialize($arrBooks);
+            $seri = serialize($arrBooks);
             header("Location:../Vista/formVer.php?libros=$seri");
         } else {
             echo "el usuario no tiene libros prestados";

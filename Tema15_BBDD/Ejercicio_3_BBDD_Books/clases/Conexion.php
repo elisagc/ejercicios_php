@@ -35,7 +35,7 @@ class Conexion
     {
         try {
             $statement = $this->con->prepare(trim($query));
-            var_dump($statement);
+            //var_dump($statement);
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {
