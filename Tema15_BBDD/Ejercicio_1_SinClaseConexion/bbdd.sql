@@ -1,6 +1,6 @@
-create database if not exists bookstore;
-use bookstore;
-CREATE TABLE book (
+create database if not exists pepe;
+use pepe;
+CREATE TABLE book IF NOT exists(
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     isbn VARCHAR(13) NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -47,3 +47,10 @@ CREATE TABLE sale_book (
 SINGLETON QUÉ ES: UN PATRÓN DE DISEÑO EN JAVA SOBRETODO
 SE USA CUANDO SE INSTANCIA UNA VEZ UN OBJETO: COMO EN LA CONEXIÓ
 */
+
+INSERT INTO book(isbn,title,author,stock,price) VALUES(123,"12345","el libro de los baltimore","joel dicker",3,9.99);
+INSERT INTO customer(id,firstname,surname,email,type) VALUES(1,"Elisa","Garcia","eli@hotmail.com","premium");
+/*PRIMER VENTA*/
+INSERT INTO sale(id,customer_id,date) VALUES(888,1, DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-31 00:00:00'));
+/* DESPUÉS LIBRO VENDIDO */
+INSERT INTO sale_book(book_id,sale_id,amount) VALUES(123,888,1);
