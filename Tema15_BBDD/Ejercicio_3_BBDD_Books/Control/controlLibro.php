@@ -97,32 +97,41 @@ QUERY;
 
 
         $rowsBook = $con->selectQuery($selectIdBook);
-        $idBook = $rowsBook[0]['id'];
-        $stock = $rowsBook[0]['stock'] + 1;
 
-        //var_dump($stock);
-        $exist = "select * from borrowed_books where customer_id=$idPerson and book_id=$idBook";
-        $res = $con->selectQuery($exist);
-
-        if (!empty($res)) {
-            $delete = "delete from borrowed_books where customer_id=$idPerson and book_id=$idBook";
-            $res = $con->query($delete);
-
-            if ($res) {
-                $update = <<<QUERY
-                update book set stock=$stock where id=$idBook;
+        if($rowsBook){
+            $idBook = $rowsBook[0]['id'];
+            $stock = $rowsBook[0]['stock'] + 1;
+    
+            //var_dump($stock);
+            $exist = "select * from borrowed_books where customer_id=$idPerson and book_id=$idBook";
+            $res = $con->selectQuery($exist);
+    
+            if (!empty($res)) {
+                $delete = "delete from borrowed_books where customer_id=$idPerson and book_id=$idBook";
+                $res = $con->query($delete);
+    
+                if ($res) {
+                    $update = <<<QUERY
+                    update book set stock=$stock where id=$idBook;
 QUERY;
-                $con->query($update);
-                echo "Devuelto correctamente";
-                header("Refresh: 2; url=../Vista/formDevolver.php");
+                    $con->query($update);
+                    echo "Devuelto correctamente";
+                    header("Refresh: 2; url=../Vista/formDevolver.php");
+                } else {
+                    echo "No se ha podido realizar la devolución";
+                    header("Refresh: 2; url=../Vista/formDevolver.php");
+                }
             } else {
-                echo "No se ha podido realizar la devolución";
+                echo "no tiene ese libro prestado";
                 header("Refresh: 2; url=../Vista/formDevolver.php");
             }
-        } else {
-            echo "no tiene ese libro prestado";
+
+        }else{
+            echo "el isbn es incorrecto";
             header("Refresh: 2; url=../Vista/formDevolver.php");
         }
+
+      
     } else {
         echo "no existe el usuario";
         header("Refresh: 2; url=../Vista/formDevolver.php");
