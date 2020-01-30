@@ -22,6 +22,9 @@
       <li><a href="./formAlquilar.php">Alquilar Libro</a></li>
       <li><a href="./formDevolver.php">Devolver Libro</a></li>
       <li><a href="./formVer.php">Ver mis libros prestados</a></li>
+      <li><a href="./formComprar.php">Comprar</a></li>
+      <li><a href="../index.php">Cerrar sesión</a></li>
+
     </ul>
   </nav>
 

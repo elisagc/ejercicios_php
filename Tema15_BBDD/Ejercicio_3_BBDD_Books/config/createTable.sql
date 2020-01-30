@@ -42,3 +42,10 @@ CREATE TABLE sale_book IF NOT EXISTS (
     FOREIGN KEY (sale_id) REFERENCES sale(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (book_id, sale_id)
 ) engine='Innodb';
+
+INSERT INTO book(id,isbn,title,author,stock,price) VALUES(123,"12345","el libro de los baltimore","joel dicker",3,9.99);
+INSERT INTO customer(1,Elisa,Garcia,eli@hotmail.com,premium);
+/*PRIMER VENTA*/
+INSERT INTO sale(id,customer_id,date) VALUES(888,1, DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-31 00:00:00'));
+/* DESPUÉS LIBRO VENDIDO */
+INSERT INTO sale_book(book_id,sale_id,amount) VALUES(123,888,1);

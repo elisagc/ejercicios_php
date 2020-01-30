@@ -2,13 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
-
     <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,28 +35,25 @@
     <div class="form-container">
         <form action="../Control/controlLibro" method="post">
 
+
             <label for="isbn"><b>ISBN</b></label>
             <input type="text" name="isbn" required>
-
-            <label for="isbn"><b>Title</b></label>
+            <label for="title"><b>Title</b></label>
             <input type="text" name="title" required>
+            <label for="title"><b>Cliente:</b></label>
+            <input type="text" name="name" required>
 
-            <label for="isbn"><b>Author</b></label>
-            <input type="text" name="author" required>
-
-            <label for="isbn"><b>Stock</b></label>
-            <input type="text" name="stock" required>
-
-            <label for="isbn"><b>Price</b></label>
-            <input type="text" name="price" required>
-
-            <button type="submit" name="insertar" required>Añadir libro</button>
+            <button type="submit" name="comprar" required>Comprar</button>
 
         </form>
     </div>
 
+    <h1>Libros en venta</h1>
+
     <?php include("../Functions/functions.php");
     paintBooks();
+
+
     ?>
 
 </body>

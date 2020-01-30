@@ -22,8 +22,9 @@
             <li><a href="./formEliminar.php">Eliminar Libro</a></li>
             <li><a href="./formAlquilar.php">Alquilar Libro</a></li>
             <li><a href="./formDevolver.php">Devolver Libro</a></li>
-
             <li><a href="./formVer.php">Ver mis libros prestados</a></li>
+            <li><a href="./formComprar.php">Comprar</a></li>
+            <li><a href="../index.php">Cerrar sesión</a></li>
         </ul>
     </nav>
 
@@ -42,17 +43,17 @@
     <?php include("../Functions/functions.php");
     paintBooks();
 
-        // MOSTRAR LOS LIBROS PRESTADOS QUE VIENEN DESDE CONTROL LIBRO ALQUILAR DESDE EL HEADER SERIALIZADOS
-        if(isset($_GET['libros'])){
+    // MOSTRAR LOS LIBROS PRESTADOS QUE VIENEN DESDE CONTROL LIBRO ALQUILAR DESDE EL HEADER SERIALIZADOS
+    if (isset($_GET['libros'])) {
 
-            $libros=unserialize($_GET['libros']);
-            echo "<p>Libros que tiene prestados:</p>";
-            echo"<br>";
-                foreach($libros as $libro){
-                echo "<p>$libro</p>";
-                echo"<br>";
-            }
+        $libros = unserialize($_GET['libros']);
+        echo "<p>Libros que tiene prestados:</p>";
+        echo "<br>";
+        foreach ($libros as $libro) {
+            echo "<p>$libro</p>";
+            echo "<br>";
         }
+    }
     ?>
 
 </body>

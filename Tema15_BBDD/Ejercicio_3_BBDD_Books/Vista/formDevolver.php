@@ -21,8 +21,9 @@
             <li><a href="./formEliminar.php">Eliminar Libro</a></li>
             <li><a href="./formAlquilar.php">Alquilar Libro</a></li>
             <li><a href="./formDevolver.php">Devolver Libro</a></li>
-
             <li><a href="./formVer.php">Ver mis libros prestados</a></li>
+            <li><a href="./formComprar.php">Comprar</a></li>
+            <li><a href="../index.php">Cerrar sesión</a></li>
         </ul>
     </nav>
 
@@ -32,7 +33,7 @@
 
             <label for="isbn"><b>ISBN</b></label>
             <input type="text" name="isbn" required>
-    
+
             <label for="title"><b>Devuelto por:</b></label>
             <input type="text" name="name" required>
 
