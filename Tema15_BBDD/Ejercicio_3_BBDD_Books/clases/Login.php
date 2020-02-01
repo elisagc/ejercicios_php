@@ -20,14 +20,18 @@ $selectUser=<<<SEL
 SELECT email, password,type from customer where email='$this->user';
 SEL;
 
-$resultSelect=$this->con->selectQuery($selectUser);
-return $resultSelect;
+try{
+    $resultSelect=$this->con->selectQuery($selectUser);
+    return $resultSelect;
 
-$this->con->dbClose();
+}catch(PDOException $e){
+var_dump($e);
+}
+
+
+
 
 }
 
 
 }
-
-?>

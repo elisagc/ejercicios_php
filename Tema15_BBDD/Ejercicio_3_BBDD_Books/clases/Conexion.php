@@ -1,6 +1,8 @@
 <?php
 class Conexion
 
+
+
 {
     private static $instance = NULL;
     private $con = NULL;
@@ -9,8 +11,24 @@ class Conexion
     {
         $config = file_get_contents("../config/config.json");
         $config = json_decode($config, true);
-        //var_dump($config);
-        $this->con = new PDO($config['db_host'], $config['db_username'], $config['db_password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+        try {
+            $this->con = new PDO($config['DBType'] . ":" . $config['DBName'] . ";" . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        } catch (PDOException $e) {
+            try {
+                //Acceder a localHost y crear BBDD:
+                $this->con = new PDO($config['DBType'] . ":"  . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $this->con->prepare('CREATE DATABASE IF NOT EXISTS prueba COLLATE utf8_spanish_ci')->execute();
+                //Crear tablas:
+                $createTables = file_get_contents("../config/createTable.sql");
+                $this->con->prepare($createTables)->execute();
+                //Insertar datos:
+                $insertData = file_get_contents("../config/insertData.sql");
+                $this->con->prepare($insertData)->execute();
+            } catch (PDOException $e) {
+                echo "no se ha podido crear la BBDD";
+            }
+        }
     }
 
     private function __clone()
@@ -35,11 +53,11 @@ class Conexion
     {
         try {
             $statement = $this->con->prepare(trim($query));
-            //var_dump($statement);
+            var_dump($statement);
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {
-            return $exception;
+            echo "No se ha podido acceder a la BBDD";
         }
     }
 
@@ -48,20 +66,10 @@ class Conexion
         try {
 
             $statement = $this->con->prepare(trim($query));
-            //var_dump($statement);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $rows;
-            /*
-Ejemplo:$query= “Select * from book where autor=:author’;
-$statement = $db->prepare($query);
-$statement->bindValue(‘author’,’Cervantes’);
-$statement->execute();
-$rows=$statement->fetchAll();
-var_dump(rows);
-
-        */
         } catch (PDOException $exception) {
             return "ERROR AL REALIZAR LA QUERY" . $exception;
         }
@@ -73,3 +81,13 @@ var_dump(rows);
         echo "CONEXIÓN CERRADA";
     }
 }
+
+            /*
+Ejemplo:$query= “Select * from book where autor=:author’;
+$statement = $db->prepare($query);
+$statement->bindValue(‘author’,’Cervantes’);
+$statement->execute();
+$rows=$statement->fetchAll();
+var_dump(rows);
+
+        */

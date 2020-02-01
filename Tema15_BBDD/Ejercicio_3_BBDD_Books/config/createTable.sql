@@ -1,6 +1,5 @@
-
-use bookstore;
-CREATE TABLE book IF NOT EXISTS (
+use prueba;
+CREATE TABLE book(
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     isbn VARCHAR(13) NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -9,22 +8,23 @@ CREATE TABLE book IF NOT EXISTS (
     price FLOAT NOT NULL
 ) engine='Innodb';
 
-CREATE TABLE customer IF NOT EXISTS (
+CREATE TABLE customer(
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(255) NOT NULL,
     surname VARCHAR(255),
     email VARCHAR(255),
-    type ENUM('basic','premium') 
+    type ENUM('basic','premium'),
+    password VARCHAR(35)
 ) engine='Innodb';
 
-CREATE TABLE sale IF NOT EXISTS (
+CREATE TABLE sale (
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customer_id INT(10),
     date DATETIME,
     FOREIGN KEY(customer_id) REFERENCES customer(id) ON UPDATE CASCADE ON DELETE CASCADE  
 ) engine='Innodb';
 
-CREATE TABLE borrowed_books IF NOT EXISTS (
+CREATE TABLE borrowed_books (
     customer_id INT(10),
     book_id INT(10),
     start DATETIME,
@@ -34,7 +34,7 @@ CREATE TABLE borrowed_books IF NOT EXISTS (
     PRIMARY KEY(customer_id,book_id)
 ) engine='Innodb';
 
-CREATE TABLE sale_book IF NOT EXISTS (
+CREATE TABLE sale_book (
     book_id INT(10),
     sale_id INT(10),
     amount SMALLINT(5),
@@ -43,9 +43,3 @@ CREATE TABLE sale_book IF NOT EXISTS (
     PRIMARY KEY (book_id, sale_id)
 ) engine='Innodb';
 
-INSERT INTO book(id,isbn,title,author,stock,price) VALUES(123,"12345","el libro de los baltimore","joel dicker",3,9.99);
-INSERT INTO customer(1,Elisa,Garcia,eli@hotmail.com,premium);
-/*PRIMER VENTA*/
-INSERT INTO sale(id,customer_id,date) VALUES(888,1, DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-31 00:00:00'));
-/* DESPUÉS LIBRO VENDIDO */
-INSERT INTO sale_book(book_id,sale_id,amount) VALUES(123,888,1);

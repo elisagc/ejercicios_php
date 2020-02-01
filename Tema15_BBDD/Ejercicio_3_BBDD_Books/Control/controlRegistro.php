@@ -12,6 +12,7 @@ if (isset($_POST['submit'])){
         $_SESSION['pass']=$_POST['pass'];
         $_SESSION['type']=$_POST['type'];
         
+        
         header('Location: ../Modelo/customer.php');
         
     }else{

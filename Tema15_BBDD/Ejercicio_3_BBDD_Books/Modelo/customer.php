@@ -3,7 +3,6 @@
 session_start();
 
 spl_autoload_register(function($className){
-    echo $className;
     include __DIR__ . '../../clases/' . $className . '.php'; 
 });
 

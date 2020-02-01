@@ -1,6 +1,9 @@
 {
 
-  "db_host": "mysql:dbname=bookstore;host=localhost",
-  "db_username": "root",
-  "db_password": ""
+  "DBType":"mysql",
+  "DBName":"dbname=prueba",
+  "DBHost": "host=localhost",
+  "DBUsername": "root",
+  "DBPassword": ""
 }
+
