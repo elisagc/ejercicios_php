@@ -1,6 +1,8 @@
 <?php
 class Conexion
 
+//OJO CON LAS RUTAS DE CONFIG
+//LO ÚNICO QUE CAMBIA SON: RUTAS Y EL NOMBRE DE LA BBDD EN EL CREATE
 {
     private static $instance = NULL;
     private $con = NULL;
@@ -13,17 +15,17 @@ class Conexion
         try {
             $this->con = new PDO($config['DBType'] . ":" . $config['DBName'] . ";" . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         } catch (PDOException $e) {
-            echo "creando la BBDD" . $e->getMessage();
+            //echo "creando la BBDD" . $e->getMessage();
             try {
                 //Acceder a localHost y crear BBDD:
                 $this->con = new PDO($config['DBType'] . ":"  . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-                $this->con->prepare('CREATE DATABASE IF NOT EXISTS prueba COLLATE utf8_spanish_ci')->execute();
+                $this->con->prepare('CREATE DATABASE IF NOT EXISTS imagenes COLLATE utf8_spanish_ci')->execute();
                 //Crear tablas:
                 $createTables = file_get_contents("../config/createTable.sql");
                 $this->con->prepare($createTables)->execute();
                 //Insertar datos:
-                $insertData = file_get_contents("../config/insertData.sql");
-                $this->con->prepare($insertData)->execute();
+                //$insertData = file_get_contents("../config/insertData.sql");
+                //$this->con->prepare($insertData)->execute();
             } catch (PDOException $e) {
                 echo "no se ha podido crear la BBDD";
             }
@@ -52,7 +54,7 @@ class Conexion
     {
         try {
             $statement = $this->con->prepare(trim($query));
-            var_dump($statement);
+            //var_dump($statement);
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {
