@@ -1,5 +1,7 @@
 <?php
 
+//ALMACENAR IMAGENES EN MYSQL
+
 spl_autoload_register(function ($className) {
     include __DIR__ . '../../clases/' . $className . '.php'; // PARA CUANDO NO USAS NAMESPACE
 });
@@ -59,8 +61,10 @@ function readImage($carpeta_destino, $nombre_archivo, $tamano_archivo, $tipo_arc
     $res = $con->query($insertQuery);
     if ($res) {
         echo "img insertada en BBDD";
-        header("Refresh: 3;url= ../index.php");
+        header("Refresh: 3;url= ./controlReadImageBBDD.php");
     } else {
         echo "error al insertar img en BBDD";
     }
 }
+
+//los datos en la bbdd se almacenan en base64

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-      <form action="Control/controlImagen.php" method="post" enctype="multipart/form-data">
+      <form action="Control/controlAddImageBBDD.php" method="post" enctype="multipart/form-data">
             <label for="imagen"></label>
             <input type="file" name="archivo" />
             <input type="submit" name="submit" />
