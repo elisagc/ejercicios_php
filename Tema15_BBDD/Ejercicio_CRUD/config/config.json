@@ -1,0 +1,7 @@
+{
+  "DBType": "mysql",
+  "DBName": "dbname=crud",
+  "DBHost": "host=localhost",
+  "DBUsername": "root",
+  "DBPassword": ""
+}
