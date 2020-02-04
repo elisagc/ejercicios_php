@@ -2,7 +2,6 @@
 
 class Customer
 {
-
     public $name;
     public $apes;
     public $email;
@@ -32,7 +31,7 @@ SEL;
         var_dump($insertUser);
         try {
             $result = $this->con->query(trim($insertUser));
-            var_dump($result);
+            // var_dump($result);
             return $result;
         } catch (PDOException $exception) {
             return false;
