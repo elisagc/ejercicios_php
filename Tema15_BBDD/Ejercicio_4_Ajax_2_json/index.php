@@ -27,6 +27,7 @@
                     var cadena = JSON.stringify(objeto);
                     document.getElementById("parrafo").innerHTML += cadena;
 
+
                 }
 
             }

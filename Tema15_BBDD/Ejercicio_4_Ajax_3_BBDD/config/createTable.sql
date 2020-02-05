@@ -1,0 +1,10 @@
+use AJAX;
+CREATE TABLE book(
+    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    isbn VARCHAR(13) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    stock SMALLINT(5)  NOT NULL,
+    price FLOAT NOT NULL
+) engine='Innodb';
+

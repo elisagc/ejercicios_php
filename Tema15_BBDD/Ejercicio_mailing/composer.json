@@ -1,0 +1,12 @@
+{
+    "name": "elisa/ejercicio_mailing",
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+    "authors": [
+        {
+            "name": "elisagc",
+            "email": "elisagcubero@gmail.com"
+        }
+    ]
+}

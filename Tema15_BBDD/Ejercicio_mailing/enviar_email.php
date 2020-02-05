@@ -1,26 +1,31 @@
 <?php
 
-if (isset($_POST['submit'])) {
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/phpmailer/src/Exception.php';
+require 'phpmailer/phpmailer/src/PHPMailer.php';
+// Instantiation and passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+try {
 
 
-    /*
-    $destinatario = $_POST['email'];
-    $mensaje = $_POST['contenido'];
-    $asunto = $_POST['asunto'];
+    /* Set the mail sender. */
+    $mail->setFrom('elisagcubero@gmail.com');
 
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-    $headers .= "From: Prueba Eli <elisagcubero@gmail.com>\r\n";
-    $exito = mail($destinatario, $asunto, $mensaje, $headers);
+    /* Add a recipient. */
+    $mail->addAddress('elisagcubero@gmail.com');
 
-    if ($exito) {
-        echo "mensaje enviado";
-    } else {
-        echo "error";
-    }
-    */
+    /* Set the subject. */
+    $mail->Subject = 'Force';
+
+    /* Set the mail message body. */
+    $mail->Body = 'There is a great disturbance in the Force.';
+
+    /* Finally send the mail. */
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
-
-
-
-// mensaje a enviar: debe separarse cada líena con \n \r. No deben ocupar más de 70 caracteres
