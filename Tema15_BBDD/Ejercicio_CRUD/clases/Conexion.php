@@ -14,13 +14,16 @@ class Conexion
 
         try {
             $this->con = new PDO($config['DBType'] . ":" . $config['DBName'] . ";" . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            //$this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // $this->con->exec("SET CHARACTER SET utf8");
+            $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->con->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             //echo "creando la BBDD" . $e->getMessage();
             try {
                 //Acceder a localHost y crear BBDD:
                 $this->con = new PDO($config['DBType'] . ":"  . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->con->exec("SET CHARACTER SET utf8");
+
                 $this->con->prepare('CREATE DATABASE IF NOT EXISTS crud COLLATE utf8_spanish_ci')->execute();
                 //Crear tablas:
                 $createTables = file_get_contents("./config/createTable.sql");
@@ -28,8 +31,9 @@ class Conexion
                 //Insertar datos:
                 $insertData = file_get_contents("./config/insertData.sql");
                 $this->con->prepare($insertData)->execute();
-            } catch (PDOException $e) {
-                echo "no se ha podido crear la BBDD";
+            } catch (Exception $e) {
+                echo "no se ha podido crear la BBDD" . $e->getMessage();
+                echo "Línea de error " . $e->getLine();
             }
         }
     }
