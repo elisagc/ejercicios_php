@@ -7,7 +7,7 @@ class Conexion
 
     private function __construct()
     {
-        $config = file_get_contents("../config/config.json");
+        $config = file_get_contents("./config/config.json");
         $config = json_decode($config, true);
 
         try {
@@ -19,10 +19,10 @@ class Conexion
                 $this->con = new PDO($config['DBType'] . ":"  . $config['DBHost'], $config['DBUsername'], $config['DBPassword'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 $this->con->prepare('CREATE DATABASE IF NOT EXISTS AJAX COLLATE utf8_spanish_ci')->execute();
                 //Crear tablas:
-                $createTables = file_get_contents("../config/createTable.sql");
+                $createTables = file_get_contents("./config/createTable.sql");
                 $this->con->prepare($createTables)->execute();
                 //Insertar datos:
-                $insertData = file_get_contents("../config/insertData.sql");
+                $insertData = file_get_contents("./config/insertData.sql");
                 $this->con->prepare($insertData)->execute();
             } catch (PDOException $e) {
                 echo "no se ha podido crear la BBDD";
@@ -52,7 +52,7 @@ class Conexion
     {
         try {
             $statement = $this->con->prepare(trim($query));
-            var_dump($statement);
+            //var_dump($statement);
             $res = $statement->execute();
             return $res;
         } catch (PDOException $exception) {
@@ -62,6 +62,7 @@ class Conexion
 
     public function selectQuery($query)
     {
+        //var_dump($query);
         try {
 
             $statement = $this->con->prepare(trim($query));

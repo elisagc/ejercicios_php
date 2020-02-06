@@ -1,4 +1,4 @@
-use prueba;
+use AJAX;
 
 INSERT INTO book(id,isbn,title,author,stock,price) VALUES
 (123,"12345","el libro de los baltimore","joel dicker",3,9.99),
