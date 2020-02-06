@@ -1,24 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Envío de Emails</title>
-</head>
+// Load Composer's autoloader
+require 'vendor/autoload.php';
 
-<body>
+// Instantiation and passing `true` enables exceptions
+$mail = new PHPMailer(true);
 
-    <form method="post" action="enviar_email.php">
+try {
+    //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+    $mail->isSMTP();                                            // Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->Username   = 'cursodawpieli@gmail.com';                     // SMTP username
+    $mail->Password   = 'sacamos10!';                               // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+    $mail->Port       = 587;                                    // TCP port to connect to
 
-        <input type="text" name="name" placeholder="Nombre" />
-        <input type="email" placeholder="E-mail" name="email" />
-        <input type="text" placeholder="Asunto" name="asunto" />
-        <input type="text" placeholder="Contenido" name="contenido" />
-        <input type="submit" name="submit" />
+    //Recipients
+    $mail->setFrom('cursodawpieli@gmail.com', 'Mailer');
+    $mail->addAddress('elisagcubero@gmail.com', 'Joe User');     // Add a recipient
 
-    </form>
-</body>
 
-</html>
+    // Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
