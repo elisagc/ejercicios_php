@@ -1,6 +1,6 @@
 <?php
 
-//header("Content-Type:application/json;charset=UTF-8");
+header("Content-Type:application/json;charset=UTF-8");
 include("clases/Conexion.php");
 $con = Conexion::getInstance();
 $result = $con->selectQuery("select * from book");
