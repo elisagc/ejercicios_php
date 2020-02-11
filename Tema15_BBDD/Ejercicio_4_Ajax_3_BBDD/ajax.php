@@ -6,5 +6,4 @@ $con = Conexion::getInstance();
 $result = $con->selectQuery("select * from book");
 
 $result = json_encode($result);
-
 echo $result;

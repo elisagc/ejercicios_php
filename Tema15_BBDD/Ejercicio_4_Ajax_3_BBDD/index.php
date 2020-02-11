@@ -24,16 +24,6 @@
 
         function mostrar() {
             var xhr = new XMLHttpRequest();
-            var price = document.getElementById("price").value;
-            console.log(price);
-
-            var o = {
-                "tabla": "books",
-                "valor": price
-            };
-
-            console.log(o);
-
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 
@@ -99,8 +89,7 @@
 
     </table>
 
-    <input type="text" id="price" />
-    <button id="mostrar">Ver precio</button>
+
 
 </body>
 
