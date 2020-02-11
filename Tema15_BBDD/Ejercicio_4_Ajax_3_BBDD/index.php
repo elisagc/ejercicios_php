@@ -24,17 +24,53 @@
 
         function mostrar() {
             var xhr = new XMLHttpRequest();
+            var price = document.getElementById("price").value;
+            console.log(price);
+
+            var o = {
+                "tabla": "books",
+                "valor": price
+            };
+
+            console.log(o);
+
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    var objeto = JSON.parse(this.responseText);
-                    var td = document.getElementsByClassName("td");
 
-                    console.log(td);
-                    for (var i = 0; i < objeto.length; i++) {
-                        td[i].innerHTML += objeto[i];
+                    var objeto = JSON.parse(this.responseText);
+
+                    var table = document.getElementById("table");
+                    var tbody = document.createElement("tbody");
+
+                    for (var j = 0; j < objeto.length; j++) {
+                        var tr = document.createElement("tr");
+
+                        var td_id = document.createElement("td");
+                        var td_isbn = document.createElement("td");
+                        var td_author = document.createElement("td");
+                        var td_title = document.createElement("td");
+                        //var td_price = document.createElement("td");
+
+                        td_id.innerHTML = objeto[j].id;
+                        tr.appendChild(td_id);
+
+                        td_isbn.innerHTML = objeto[j].isbn;
+                        tr.appendChild(td_isbn);
+
+                        td_author.innerHTML = objeto[j].author;
+                        tr.appendChild(td_author);
+
+                        td_title.innerHTML = objeto[j].title;
+                        tr.appendChild(td_title);
+
+                        //  td_price.innerHTML = objeto[j].price;
+                        //  tr.appendChild(td_price);
+
+                        tbody.appendChild(tr);
+                        table.appendChild(tbody);
                     }
 
-                    console.log(objeto);
+
                     // como el texto que recibimos de php es json lo parseamos para que sea un objeto
                     // así podemos trabajar con él en JS
                     // Convertimos un objeto JS en cadena: 
@@ -43,7 +79,7 @@
                 }
 
             }
-            xhr.open("GET", "ajax.php", true);
+            xhr.open("GET", "ajax.php?o=" + parametros, true);
             xhr.send();
 
         }
@@ -51,24 +87,20 @@
 </head>
 
 <body>
-    <button id="mostrar">Ver todos los libros</button>
-    <table>
+
+    <table id="table">
         <tr>
             <th>ID</th>
             <th>ISBN</th>
-
             <th>AUTHOR</th>
             <th>TITLE</th>
 
+        </tr>
 
-            <th>PRICE</th>
-        </tr>
-        <tr>
-            <td class="td"></td>
-            <td class="td"></td>
-            <td class="td"></td>
-        </tr>
     </table>
+
+    <input type="text" id="price" />
+    <button id="mostrar">Ver precio</button>
 
 </body>
 
