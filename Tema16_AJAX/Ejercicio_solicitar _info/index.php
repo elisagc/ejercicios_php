@@ -8,7 +8,7 @@
     <title>Document</title>
 
     <script>
-        window.addEventListener("load", mostrar);
+        window.addEventListener("onClick", mostrar);
 
         function mostrar() {
             var xhr = new XMLHttpRequest();
@@ -32,6 +32,8 @@
 <body>
 
 
+    <input type="text" />
+    <input type="submit" />
     <p id="p"></p>
 
 

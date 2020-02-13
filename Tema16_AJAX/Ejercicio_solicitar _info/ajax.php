@@ -1,9 +1,9 @@
 <?php
-//header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json; charset=UTF-8");
 
-//$objeto = json_decode($_GET['objeto'], false);
+$objeto = json_decode($_GET['objeto'], false);
 //prueba: 
-$objeto = json_decode('{"tabla":"book","valor":3}');
+//$objeto = json_decode('{"tabla":"book","valor":3}');
 
 var_dump($objeto);
 $servidor = "localhost";
