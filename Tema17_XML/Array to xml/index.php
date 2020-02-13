@@ -8,8 +8,6 @@ function arrayToXml($array, $rootElement = null, $xml = null)
         $_xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
     }
     foreach ($array as $k => $v) {
-        var_dump($k);
-        var_dump($v);
         if (is_array($v)) {
             arrayToXml($v, $k, $_xml->addChild($k));
         } else {
@@ -23,21 +21,16 @@ function arrayToXml($array, $rootElement = null, $xml = null)
 
 //con esta funciona:
 $my_array = array(
-    'name' => 'GFG',
-    'subject' => 'CS',
-
-    // Creating nested array. 
-    'contact_info' => array(
-        'city' => 'Noida',
-        'state' => 'UP',
-        'email' => 'feedback@geeksforgeeks.org'
-    ),
+    "perro" => "Muffinhead",
+    "gato" => "Cuddles"
 );
 
 
 
 // Calling arrayToxml Function and printing the result 
 $miXML = arrayToXml($my_array);
+
+var_dump($miXML);
 $archi_xml = simplexml_load_string($miXML);
 
 //ESTO CREA UN FICHERO CON EL CONTENIDO DEL XML GENERADO A PARTIR DEL ARRAY
