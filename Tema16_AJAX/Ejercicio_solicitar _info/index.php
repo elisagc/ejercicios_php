@@ -8,21 +8,39 @@
     <title>Document</title>
 
     <script>
-        window.addEventListener("onClick", mostrar);
+        window.addEventListener("load", inicio);
+
+        function inicio() {
+            document.getElementById("mostrar").addEventListener("click", mostrar);
+        }
 
         function mostrar() {
+
+            id = document.getElementById("puntuacion").value;
+            var objeto = {
+                "tabla": "book",
+                "valor": parseInt(id)
+            }
             var xhr = new XMLHttpRequest();
+            var txt = "";
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    var text = this.responseText;
+                    console.log(text);
+                    var array = JSON.parse(text);
 
-                    var objeto = this.responseText;
-                    document.getElementById("p").innerHTML = objeto;
-                    console.log(objeto);
+                    for (x in array) {
+                        txt += array[x].stock + "-" + array[x].price;
+                    }
+
+                    document.getElementById("texto").innerHTML = txt;
 
                 }
 
             }
-            xhr.open("GET", "ajax.php", true);
+
+            var parametros = JSON.stringify(objeto);
+            xhr.open("GET", "ajax.php?objeto=" + parametros, true);
             xhr.send();
 
         }
@@ -32,9 +50,9 @@
 <body>
 
 
-    <input type="text" />
-    <input type="submit" />
-    <p id="p"></p>
+    <input type="number" id="puntuacion" />
+    <button id="mostrar">Mostar</button>
+    <p id="texto"></p>
 
 
 

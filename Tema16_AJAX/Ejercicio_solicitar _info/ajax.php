@@ -1,11 +1,11 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+//header("Content-Type: application/json; charset=UTF-8");
 
 $objeto = json_decode($_GET['objeto'], false);
 //prueba: 
 //$objeto = json_decode('{"tabla":"book","valor":3}');
 
-var_dump($objeto);
+
 $servidor = "localhost";
 $usuario = "root";
 $password = "";
@@ -20,7 +20,7 @@ if ($conexion->connect_error) {
 
     $sql = "select stock, price from $objeto->tabla where id=$objeto->valor";
     $result = $conexion->query($sql);
-    var_dump($result);
+
     $salida = array();
     $salida = $result->fetch_all(MYSQLI_ASSOC);
 
