@@ -29,6 +29,27 @@ if (isset($_POST["submit"])) {
 }
 
 
+if (isset($_POST["submit2"])) {
+
+    echo "modificar";
+    //coge el fichero xml
+    $xml = simplexml_load_file("mixml.xml");
+
+    //así se lee
+
+    foreach ($xml->libro as $nodo) {
+        echo $nodo->title;
+    }
+
+
+
+
+
+    //
+
+}
+
+
 
 function addChild($xml)
 {
@@ -61,4 +82,16 @@ function arrayToXml($array, $rootElement = null, $xml = null)
         }
     }
     return $_xml;
+}
+
+
+function modificarXML($xml, $key = "123", $newVal = "pepe")
+{
+
+    var_dump($xml);
+
+    foreach ($xml as $x) {
+
+        var_dump($x[0]->id);
+    }
 }

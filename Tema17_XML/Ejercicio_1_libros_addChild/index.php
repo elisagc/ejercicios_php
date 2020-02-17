@@ -34,6 +34,17 @@
 
         <input type="submit" name="submit">
     </form>
+
+    <form action='controlXML.php' method='post'>
+        id<input type="text" name="id"><br>
+        isbn <input type="text" name="isbn"><br>
+        título<input type="text" name="title"><br>
+        author<input type="text" name="author"><br>
+        stock<input type="text" name="stock"><br>
+        precio<input type="text" name="price"><br>
+
+        <input type="submit" name="submit2">
+    </form>
 </body>
 
 </html>
