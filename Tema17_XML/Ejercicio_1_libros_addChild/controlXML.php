@@ -31,22 +31,15 @@ if (isset($_POST["submit"])) {
 
 if (isset($_POST["submit2"])) {
 
-    echo "modificar";
-    //coge el fichero xml
-    $xml = simplexml_load_file("mixml.xml");
+    $oldTitle = $_POST['old'];
+    $newTitle = $_POST['new'];
+    $res = modificarXML($oldTitle, $newTitle);
 
-    //así se lee
-
-    foreach ($xml->libro as $nodo) {
-        echo $nodo->title;
+    if ($res) {
+        echo "El título se ha modificado";
+    } else {
+        echo "No existe y no se ha podido modificar";
     }
-
-
-
-
-
-    //
-
 }
 
 
@@ -85,13 +78,55 @@ function arrayToXml($array, $rootElement = null, $xml = null)
 }
 
 
-function modificarXML($xml, $key = "123", $newVal = "pepe")
+function modificarXML($oldVal, $newVal)
 {
+    $file = "mixml.xml";
 
-    var_dump($xml);
+    if (file_exists($file)) {
+        $xml = simplexml_load_file("mixml.xml");
 
-    foreach ($xml as $x) {
-
-        var_dump($x[0]->id);
+        foreach ($xml->libro as $info) {
+            if ((string) $info->title == $oldVal) {
+                $info->title = $newVal;
+                $xml->asXML($file);
+                return true;
+            }
+        }
+    } else {
+        return false;
     }
 }
+
+
+function eliminarNodoXML()
+{
+    $xml = simplexml_load_file("mixml.xml");
+    $doc = new DOMDocument();
+    $doc->load('mixml.xml');
+    $book = $doc->documentElement;
+    $nodo = $book->getElementsByTagName('libro')->item(1);
+
+    $book->removeChild($nodo);
+    var_dump($doc->saveXML());
+}
+
+/*$doc = new DOMDocument();
+$doc->load('mixml.xml');
+$book = $doc->documentElement;
+$libros = $book->getElementsByTagName('libro');
+
+foreach ($libros as $libro) {
+
+    $title = $libro->getElementsByTagName("title")->item(0)->nodeValue;
+
+    if ($title == $toDelete) {
+        $domTitle = $libro->getElementsByTagName("libro")->item(0);
+
+        $book->removeChild($domTitle);
+
+
+
+        //$book->removeChild($domTitle);
+        echo $doc->saveXML();
+    }
+}*/

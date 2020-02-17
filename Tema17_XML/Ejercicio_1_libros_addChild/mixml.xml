@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <root>
     <libro>
-        <id>42424</id>
+        <id>Libro1</id>
         <isbn>24234</isbn>
-        <title>Pepe</title>
+        <title>Carmen</title>
         <author>qeqeq</author>
         <stock>1313</stock>
         <price>1313</price>
     </libro>
     <libro>
-        <id>123</id>
+        <id>Libro2</id>
         <isbn>123</isbn>
-        <title>Harry Potter</title>
+        <title>pOPOTER</title>
         <author>Aitor Tilla</author>
         <stock>3</stock>
         <price>we</price>
     </libro>
     <libro>
-        <id>42424</id>
+        <id>Libro3</id>
         <isbn>e</isbn>
         <title>Titulo1</title>
         <author>31313</author>
