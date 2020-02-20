@@ -8,7 +8,7 @@
     <style>
         .container {
             display: grid;
-            grid-template-columns: repeat(2, 50%);
+            grid-template-columns: repeat(4, 25%);
             justify-items: center;
         }
     </style>
@@ -49,6 +49,21 @@
             título antiguo<input type="text" name="old"><br>
             título nuevo<input type="text" name="new"><br>
             <input type="submit" name="submit2">
+        </form>
+
+        <form action='controlXML.php' method='post'>
+            título que desea borrar<input type="text" name="delete"><br>
+            <input type="submit" name="submit3">
+        </form>
+
+        <form action='controlXML.php' method='post'>
+            id<input type="text" name="id"><br>
+            isbn <input type="text" name="isbn"><br>
+            título<input type="text" name="title"><br>
+            author<input type="text" name="author"><br>
+            stock<input type="text" name="stock"><br>
+            precio<input type="text" name="price"><br>
+            <input type="submit" name="submit4">
         </form>
     </div>
 </body>

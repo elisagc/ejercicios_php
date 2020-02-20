@@ -43,9 +43,27 @@ if (isset($_POST["submit2"])) {
 }
 
 
+if (isset($_POST["submit3"])) {
+
+    $delete = $_POST['delete'];
+    $res = eliminarNodoXML($delete);
+
+    if ($res) {
+        echo "El título se ha borrado";
+    } else {
+        echo "No existe y no se ha podido borrar";
+    }
+}
+
+if (isset($_POST["submit4"])) {
+
+    addChild2();
+}
+
 
 function addChild($xml)
 {
+
     $book = $xml->addChild("libro");
     $book->addChild("id", $_POST['id']);
     $book->addChild("isbn", $_POST['isbn']);
@@ -54,6 +72,23 @@ function addChild($xml)
     $book->addChild("stock", $_POST['stock']);
     $book->addChild("price", $_POST['price']);
     $xml->asXML('mixml.xml');
+}
+
+function addChild2()
+{
+
+    $myNewBook = $_POST;
+    $sxe =  simplexml_load_file('mixml.xml');
+
+    $sxe->addChild("libro");
+
+    foreach ($myNewBook as $key => $value) {
+        if ($key !== 'submit4') {
+            $sxe->addChild($key, $value);
+        }
+    }
+
+    $sxe->asXML('mixml.xml');
 }
 
 
@@ -98,35 +133,17 @@ function modificarXML($oldVal, $newVal)
 }
 
 
-function eliminarNodoXML()
+function eliminarNodoXML($deleteNode)
 {
     $xml = simplexml_load_file("mixml.xml");
-    $doc = new DOMDocument();
-    $doc->load('mixml.xml');
-    $book = $doc->documentElement;
-    $nodo = $book->getElementsByTagName('libro')->item(1);
 
-    $book->removeChild($nodo);
-    var_dump($doc->saveXML());
-}
-
-/*$doc = new DOMDocument();
-$doc->load('mixml.xml');
-$book = $doc->documentElement;
-$libros = $book->getElementsByTagName('libro');
-
-foreach ($libros as $libro) {
-
-    $title = $libro->getElementsByTagName("title")->item(0)->nodeValue;
-
-    if ($title == $toDelete) {
-        $domTitle = $libro->getElementsByTagName("libro")->item(0);
-
-        $book->removeChild($domTitle);
-
-
-
-        //$book->removeChild($domTitle);
-        echo $doc->saveXML();
+    foreach ($xml->children() as $info) {
+        if ($info->title == $deleteNode) {
+            $dom = dom_import_simplexml($info); // convertir el simplexml a domelement
+            $dom->parentNode->removeChild($dom);
+            echo $xml->asXML('mixml.xml');
+            return true;
+        }
     }
-}*/
+    return false;
+}

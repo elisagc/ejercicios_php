@@ -3,25 +3,49 @@
     <libro>
         <id>Libro1</id>
         <isbn>24234</isbn>
-        <title>Carmen</title>
+        <title>Eli</title>
         <author>qeqeq</author>
         <stock>1313</stock>
         <price>1313</price>
     </libro>
     <libro>
-        <id>Libro2</id>
-        <isbn>123</isbn>
-        <title>pOPOTER</title>
-        <author>Aitor Tilla</author>
-        <stock>3</stock>
-        <price>we</price>
-    </libro>
-    <libro>
-        <id>Libro3</id>
+        <id>123</id>
         <isbn>e</isbn>
-        <title>Titulo1</title>
-        <author>31313</author>
+        <title>Harry Potter</title>
+        <author>qeqeq</author>
         <stock>1313</stock>
         <price>1313</price>
     </libro>
+    <libro>
+        <id>123</id>
+        <isbn>e</isbn>
+        <title>Harry Potter</title>
+        <author>qeqeq</author>
+        <stock>1313</stock>
+        <price>1313</price>
+    </libro>
+    <libro>
+        <id>123</id>
+        <isbn>123</isbn>
+        <title>Titulo1</title>
+        <author>JKR</author>
+        <stock>1313</stock>
+        <price>1313</price>
+        <submit4>Enviar</submit4>
+    </libro>
+    <libro>
+        <id>123</id>
+        <isbn>123</isbn>
+        <title>Titulo1</title>
+        <author>Aitor Tilla</author>
+        <stock>1313</stock>
+        <price>9.99</price>
+    </libro>
+    <libro/>
+    <id>123</id>
+    <isbn>123</isbn>
+    <title>Titulo1</title>
+    <author>seeeeeeeeeeeeeeeeeeeeeeee</author>
+    <stock>1313</stock>
+    <price>9.99</price>
 </root>
