@@ -41,11 +41,12 @@
         <stock>1313</stock>
         <price>9.99</price>
     </libro>
-    <libro/>
-    <id>123</id>
-    <isbn>123</isbn>
-    <title>Titulo1</title>
-    <author>seeeeeeeeeeeeeeeeeeeeeeee</author>
-    <stock>1313</stock>
-    <price>9.99</price>
+    <libro>
+        <id>131916536966945</id>
+        <isbn>456</isbn>
+        <title>Pepe</title>
+        <author>J. R. R. Tolkien</author>
+        <stock>3</stock>
+        <price>12.99</price>
+    </libro>
 </root>

@@ -78,17 +78,18 @@ function addChild2()
 {
 
     $myNewBook = $_POST;
-    $sxe =  simplexml_load_file('mixml.xml');
 
-    $sxe->addChild("libro");
+    $xml =  simplexml_load_file('mixml.xml');
+
+    $book = $xml->addChild("libro");
 
     foreach ($myNewBook as $key => $value) {
         if ($key !== 'submit4') {
-            $sxe->addChild($key, $value);
+            $book->addChild($key, $value);
         }
     }
 
-    $sxe->asXML('mixml.xml');
+    $xml->asXML('mixml.xml');
 }
 
 
